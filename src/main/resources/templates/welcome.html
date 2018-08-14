@@ -13,8 +13,8 @@
 
 
 	<title>Veggi One Page Restorent Template</title>
-	<link rel="stylesheet" th:href="@{/css/font-awesome/css/font-awesome.min.css}" href="../../css/font-awesome/css/font-awesome.min.css" />/>
-	<link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,700,300italic' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" th:href="@{/css/font-awesome/css/font-awesome.min.css}" href="../../css/font-awesome/css/font-awesome.min.css" />
+	<link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,700,300italic' rel='stylesheet' type='text/css'/>
         <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.min.css}" href="../../css/bootstrap/bootstrap.min.css" />
 	<link rel="stylesheet" th:href="@{/css/animat/animate.min.css}" href="../../css/animat/animate.min.css"/>
         <link rel="stylesheet" th:href="@{/css/fancybox/jquery.fancybox.css}" href="../../css/fancybox/jquery.fancybox.css" />
@@ -22,7 +22,7 @@
         <link rel="stylesheet" th:href="@{/css/themes/default/default.css}" href="../../css/themes/default/default.css" />
         <link rel="stylesheet" th:href="@{/css/owl-carousel/owl.carousel.css}" href="../../css/owl-carousel/owl.carousel.css" />
         <link rel="stylesheet" th:href="@{/css/owl-carousel/owl.theme.css}" href="../../css/owl-carousel/owl.theme.css"/>
-        <link rel="stylesheet" th:href="@{/css/owl-carousel/owl.transitions.css}" href="../../css/owl-carousel/owl.transitions.css">
+        <link rel="stylesheet" th:href="@{/css/owl-carousel/owl.transitions.css}" href="../../css/owl-carousel/owl.transitions.css"/>
 	
         <link rel="stylesheet" th:href="@{/css/style.css}" href="../../css/style.css" />
         <link rel="stylesheet" th:href="@{/css/responsive.css}" href="../../css/responsive.css" />
@@ -30,6 +30,29 @@
 
 </head>
 <body>
+    <div id="overlay">
+        <div class="modal-content">
+            <div class="col-md-12 col-xs-12 col-sm-12">
+                <img style="width:30%; float: left;" src="images/1.jpg" alt="" />
+                <div style="padding-left: 5px;padding-top: 5px;width: 30%; float: left;">
+                    <h3>Trà đào</h3>
+                    <p>25,000d</p>
+                </div>
+                <div style="float: right; width: 40%;">
+                    <div style=" padding-top: 30%;">
+                        <button style="background:white ;width: 30%;height: 50px;font-size:200%; border: 1px solid red; border-radius: 10px; color:red;">+</button>
+                        
+                        <button style="background:white ;width: 30%;height: 50px;font-size:200%; border-radius: 10px; color:black;border: 1px solid black;">1</button>
+                        <button style="background:blue ;width: 30%;height: 50px;font-size:200%; border-radius: 10px; color:white;">-</button>
+                    </div>
+                </div>
+            </div>
+            <h1>Overlay Text</h1>
+            <h1>Overlay Text</h1>
+            <h1>Overlay Text</h1>
+        
+        </div>
+    </div>
     <div id="hoatra">
 	
 
@@ -368,21 +391,21 @@
             <ul class="shopping-cart-items">
               <li class="clearfix">
                 <img src="images/1.jpg" alt="item1" />
-                <span class="item-name">Sony DSC-RX100M III</span>
+                <span class="item-name">Chim..</span>
                 <span class="item-price">$849.99</span>
                 <span class="item-quantity">Quantity: 01</span>
               </li>
 
               <li class="clearfix">
                 <img src="images/1.jpg" alt="item1" />
-                <span class="item-name">KS Automatic Mechanic...</span>
+                <span class="item-name">Bướm...</span>
                 <span class="item-price">$1,249.99</span>
                 <span class="item-quantity">Quantity: 01</span>
               </li>
 
               <li class="clearfix">
                 <img src="images/1.jpg" alt="item1" />
-                <span class="item-name">Kindle, 6" Glare-Free To...</span>
+                <span class="item-name">Phao câu....</span>
                 <span class="item-price">$129.99</span>
                 <span class="item-quantity">Quantity: 01</span>
               </li>
@@ -439,14 +462,18 @@
                                             <br>
                                             <h4>`+item.name+`</h4>
                                             <p style="color :red;">`+item.price +`đ</p>
-                                            <button type="button" class="btn btn-danger" style="color: black">Add to cart</button>
+                                            <button type="button" class="btn btn-danger btnCart" style="color: black">Add to cart</button>
                                         </div>
                                         </br>
                                     </div>`;
                                     document.getElementById("listproduct").innerHTML += html;
                            });
                         }
-                    });
+                    });    
+            });
+            
+            $(document).on('click', '.btnCart', function () {
+                document.getElementById("overlay").style.display = "block";
             });
         </script>
 	
