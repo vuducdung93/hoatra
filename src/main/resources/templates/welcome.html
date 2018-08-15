@@ -63,8 +63,8 @@
 							<li><a href="#special">MENU</a></li>
 							<li><a href="#abouts">CLIENTS</a></li>
 							<li><a href="#footer">FAQ</a></li>
-                                                        <li>
-                                                            <a style="cursor: pointer;" id="cart"><i class="fa fa-shopping-cart"></i> CART <span class="badge">3</span></a>
+                                                        <li id="cart">
+                                                            <a style="cursor: pointer;pointer-events: none;"><i class="fa fa-shopping-cart"></i> CART <span class="badge">3</span></a>
                                                         </li>
                                                            
                                                         
@@ -416,10 +416,11 @@
               $("#cart").on("click", function() {
                var a= $(".shopping-cart").css("display");
 
-               if(a=="none"){
-                   $(".shopping-cart").css("display","inline");
-               }else{
+               if(a!="none"){
                    $(".shopping-cart").css("display","none");
+               }else{
+                   
+                   $(".shopping-cart").css("display","inline");
                }
               });
 
@@ -462,16 +463,16 @@
                                         
                                         <img style="width:30%; float: left;" src="images/`+item.image+`" alt="" />
                                         <div style="padding-left: 5px;padding-top: 5px;width: 30%; float: left;">
-                                            <h3>`+item.name+`</h3>
+                                            <p style="font-size:20px; font-weight:bold; color:black;">`+item.name+`</p>
                                             <p>`+item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+`đ</p>
                                         </div>
                                         <div style="float: right; width: 40%;">
                                             <a id="close" style="font-size: 40px; float:right;height:30px; top:0px; right:0px;">&times;</a>
-                                            <div style=" padding-top: 30%;">
-                                                <button  id="plus" style="background:white ;width: 20%;height: 50px;font-size:200%; border: 1px solid red; border-radius: 10px; color:red;">+</button>
+                                            <div style="float: right; width:100%; padding-top: 30%;">
+                                                <button  id="plus" style="background:white ;width: 30%;height: 50px;font-size:200%; border: 1px solid red; border-radius: 10px; color:red;">+</button>
 
-                                                <input disabled id="quantity" style=" text-align: center;background:white ;width: 20%;height: 50px;font-size:200%; border-radius: 10px; color:black;border: 1px solid black;" value="1"/>
-                                                <button id="minus" style="background:blue ;width: 20%;height: 50px;font-size:200%; border-radius: 10px; color:white;">-</button>
+                                                <input disabled id="quantity" style=" text-align: center;background:white ;width: 30%;height: 50px;font-size:200%; border-radius: 10px; color:black;border: 1px solid black;" value="1"/>
+                                                <button id="minus" style="background:blue ;width: 30%;height: 50px;font-size:200%; border-radius: 10px; color:white;">-</button>
                                             </div>
                                             
                                         </div>
