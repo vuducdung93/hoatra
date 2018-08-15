@@ -1,469 +1,469 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>Spring Boot Thymeleaf Hello World Example</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<head>
+<title>Spring Boot Thymeleaf Hello World Example</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-        <link rel="stylesheet" type="text/css"
-              href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css"
+	href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
 
 
-        <title>Veggi One Page Restorent Template</title>
-        <link rel="stylesheet" th:href="@{/css/font-awesome/css/font-awesome.min.css}" href="../../css/font-awesome/css/font-awesome.min.css" />
-        <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,700,300italic' rel='stylesheet' type='text/css'/>
+	<title>Veggi One Page Restorent Template</title>
+	<link rel="stylesheet" th:href="@{/css/font-awesome/css/font-awesome.min.css}" href="../../css/font-awesome/css/font-awesome.min.css" />
+	<link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,700,300italic' rel='stylesheet' type='text/css'/>
         <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.min.css}" href="../../css/bootstrap/bootstrap.min.css" />
-        <link rel="stylesheet" th:href="@{/css/animat/animate.min.css}" href="../../css/animat/animate.min.css"/>
+	<link rel="stylesheet" th:href="@{/css/animat/animate.min.css}" href="../../css/animat/animate.min.css"/>
         <link rel="stylesheet" th:href="@{/css/fancybox/jquery.fancybox.css}" href="../../css/fancybox/jquery.fancybox.css" />
         <link rel="stylesheet" th:href="@{/css/nivo-lightbox/nivo-lightbox.css}" href="../../css/nivo-lightbox/nivo-lightbox.css"/>
         <link rel="stylesheet" th:href="@{/css/themes/default/default.css}" href="../../css/themes/default/default.css" />
         <link rel="stylesheet" th:href="@{/css/owl-carousel/owl.carousel.css}" href="../../css/owl-carousel/owl.carousel.css" />
         <link rel="stylesheet" th:href="@{/css/owl-carousel/owl.theme.css}" href="../../css/owl-carousel/owl.theme.css"/>
         <link rel="stylesheet" th:href="@{/css/owl-carousel/owl.transitions.css}" href="../../css/owl-carousel/owl.transitions.css"/>
-
+	
         <link rel="stylesheet" th:href="@{/css/style.css}" href="../../css/style.css" />
         <link rel="stylesheet" th:href="@{/css/responsive.css}" href="../../css/responsive.css" />
         <link rel="stylesheet" th:href="@{/css/cart.css}" href="../../css/cart.css" />
 
-    </head>
-    <body>
-        <div id="overlay">
+</head>
+<body>
+    <div id="overlay">
+        
+        
+    </div>
+    <div id="hoatra">
+	
 
 
-        </div>
-        <div id="hoatra">
+	<div class='preloader'><div class='loaded'>&nbsp;</div></div>
+	<header id="home" class="header">
+            
+		<div class="main_menu_bg navbar-fixed-top wow slideInDown" data-wow-duration="1s">
+			<div class="container">
+				<div class="row">
+					<div class="nave_menu">
+					<nav class="navbar navbar-default">
+					  <div class="container-fluid">
+						<!-- Brand and toggle get grouped for better mobile display -->
+						<div class="navbar-header">
+						  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						  </button>
+						  
+						</div>
 
+						<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						  
+						  <ul class="nav navbar-nav navbar-right">
+							<li class="active"><a href="#home">Home</a></li>
+							<li><a href="#features">FEATURES</a></li>
+							<li><a href="#special">MENU</a></li>
+							<li><a href="#abouts">CLIENTS</a></li>
+							<li><a href="#footer">FAQ</a></li>
+                                                        <li>
+                                                            <a style="cursor: pointer;" id="cart"><i class="fa fa-shopping-cart"></i> CART <span class="badge">3</span></a>
+                                                        </li>
+                                                           
+                                                        
+						  </ul>
+                                                 
+                                                    
+                                                    
+						</div><!-- /.navbar-collapse -->
+                                                
+					  </div><!-- /.container-fluid -->
+					</nav>
+					</div>	
+				</div><!--End of row -->
+				
+			</div><!--End of container -->
+			
+		</div>
+	</header> <!--End of header -->
+	
+	
+	
+	<section id="banner" class="banner">
+		<div class="container">
+			<div class="row">
+				<div class="main_banner_area text-center">
+					<div class="col-md-5 col-sm-5 col-md-offset-7 col-sm-offset-7">
+						<div class="single_banner_text wow zoomIn" data-wow-duration="1s">
+							<p>Veggies es bonus vobis, proinde vos postulo essum.</p>
+							
+							<div class="separetor"></div>
+						</div>
+					</div>
+					
+					
+					<div class="scrolldown">
+						<a href="#special" class="scroll_btn"></a>
+					</div>
+				</div>
+				
+				
+			</div>
+                    
+		</div>
+	</section><!-- End of Banner Section -->
+	 <!--end shopping-cart -->
+	
 
-
-            <div class='preloader'><div class='loaded'>&nbsp;</div></div>
-            <header id="home" class="header">
-
-                <div class="main_menu_bg navbar-fixed-top wow slideInDown" data-wow-duration="1s">
-                    <div class="container">
-                        <div class="row">
-                            <div class="nave_menu">
-                                <nav class="navbar navbar-default">
-                                    <div class="container-fluid">
-                                        <!-- Brand and toggle get grouped for better mobile display -->
-                                        <div class="navbar-header">
-                                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                                                <span class="sr-only">Toggle navigation</span>
-                                                <span class="icon-bar"></span>
-                                                <span class="icon-bar"></span>
-                                                <span class="icon-bar"></span>
-                                            </button>
-
-                                        </div>
-
-                                        <!-- Collect the nav links, forms, and other content for toggling -->
-                                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-                                            <ul class="nav navbar-nav navbar-right">
-                                                <li class="active"><a href="#home">Home</a></li>
-                                                <li><a href="#features">FEATURES</a></li>
-                                                <li><a href="#special">MENU</a></li>
-                                                <li><a href="#abouts">CLIENTS</a></li>
-                                                <li><a href="#footer">FAQ</a></li>
-                                                <li>
-                                                    <a style="cursor: pointer;" id="cart"><i class="fa fa-shopping-cart"></i> CART <span class="badge">3</span></a>
-                                                </li>
-
-
-                                            </ul>
-
-
-
-                                        </div><!-- /.navbar-collapse -->
-
-                                    </div><!-- /.container-fluid -->
-                                </nav>
-                            </div>	
-                        </div><!--End of row -->
-
-                    </div><!--End of container -->
-
-                </div>
-            </header> <!--End of header -->
-
-
-
-            <section id="banner" class="banner">
-                <div class="container">
-                    <div class="row">
-                        <div class="main_banner_area text-center">
-                            <div class="col-md-5 col-sm-5 col-md-offset-7 col-sm-offset-7">
-                                <div class="single_banner_text wow zoomIn" data-wow-duration="1s">
-                                    <p>Veggies es bonus vobis, proinde vos postulo essum.</p>
-
-                                    <div class="separetor"></div>
+	
+	<section id="features" class="features sections">
+		<div class="container">
+			<div class="row">
+				<div class="features_content text-center">
+					<div class="col-md-4">
+						<div class="sinle_features wow slideInUp" data-wow-duration="1s">
+							<img src="images/icon1.png" alt="" />
+							<h5>Turnip greens</h5>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisc Pellentesque vel enim a elit viverra elementuma. Aliquam erat volutpat. </p>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="sinle_features wow slideInUp" data-wow-duration="1.5s">
+							<img src="images/icon1.png" alt="" />
+							<h5>Turnip greens</h5>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisc Pellentesque vel enim a elit viverra elementuma. Aliquam erat volutpat. </p>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="sinle_features wow slideInUp" data-wow-duration="2s">
+							<img src="images/icon1.png" alt="" />
+							<h5>Turnip greens</h5>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisc Pellentesque vel enim a elit viverra elementuma. Aliquam erat volutpat. </p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section><!-- End of Abouts Section -->	
+	
+	<section id="special" class="special sections">
+		<div class="container">
+			<div class="row">
+				<div class="head_title text-center wow slideInLeft" data-wow-duration="1.5s">
+					<h2>Menu</h2>
+					<div class="separetor"></div>
+				</div>
+				<div id="listproduct" class="main_special text-center wow slideInUp" data-wow-duration="3s">
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
                                 </div>
-                            </div>
+			</div>
+		</div>
+	</section>
 
 
-                            <div class="scrolldown">
-                                <a href="#special" class="scroll_btn"></a>
-                            </div>
-                        </div>
+	
+	
+	<section id="abouts" class="abouts sections">
+		<div class="container">
+			<div class="row">
+				<div class="main_abouts">
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<div class="single_abouts wow slideInLeft" data-wow-duration="2s">
+							<div class="head_title text-center">
+								<h2>About us</h2>
+								<div class="separetor"></div>
+							</div>
+							
+							<p>Hơn 1 năm không phải là một chặng đường dài! Nhưng những gì mà Hoa Trà đã gây dựng được để đứng vững giữa vô vàn thương hiệu trà sữa không hề dễ dàng. Một thương hiệu trà sữa thân quen gắn liền với thanh xuân của thế hệ 8x, 9x và cả 10x trên khắp Việt Nam trong suốt thập kỷ qua.</p>
+							<div class="signature_img text-right">
+								<img src="images/signature.png" alt="" />
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<div class="single_abouts wow slideInRight" data-wow-duration="2s">
+							<img src="images/abimg.png" alt="" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section><!-- End of Abouts Section -->
+	
+	<section id="menus" class="menus sections">
+		<div class="container">
+			<div class="row">
+				<div class="main_menus">
+					<div class="head_title text-center wow slideInDown" data-wow-duration="2s">
+						<h2>Menu</h2>
+						<div class="separetor"></div>
+					</div>
+					
+					<div class="menus_top_menu text-center wow slideInDown" data-wow-duration="1.5s">
+						<ul>
+							<li class="active"><a href="">Starters</a></li>
+							<li><a href="">Main Dishes</a></li>
+							<li><a href="">Desserts</a></li>
+							<li><a href="">Drinks</a></li>
+						</ul>
+					</div>
+					
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<div class="single_menus wow slideInLeft" data-wow-duration="1.5s">
+							<ul>
+								<li> SMOKED RICOTTA TERRINE   ........................................................... 12$ <span> ricotta, shallots, cheddar, capers</span></li>
+								<li> SMOKED RICOTTA TERRINE   ........................................................... 12$ <span> ricotta, shallots, cheddar, capers</span></li>
+								<li> SMOKED RICOTTA TERRINE   ........................................................... 12$ <span> ricotta, shallots, cheddar, capers</span></li>
+								<li> SMOKED RICOTTA TERRINE   ........................................................... 12$ <span> ricotta, shallots, cheddar, capers</span></li>
+								<li> SMOKED RICOTTA TERRINE   ........................................................... 12$ <span> ricotta, shallots, cheddar, capers</span></li>
+								<li> SMOKED RICOTTA TERRINE   ........................................................... 12$ <span> ricotta, shallots, cheddar, capers</span></li>
+								<li> SMOKED RICOTTA TERRINE   ........................................................... 12$ <span> ricotta, shallots, cheddar, capers</span></li>
+								
+							</ul>
+						</div>
+					</div>
+					
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<div class="single_menus wow slideInRight" data-wow-duration="1.5s">
+							<ul>
+								<li> SMOKED RICOTTA TERRINE   ........................................................... 12$ <span> ricotta, shallots, cheddar, capers</span></li>
+								<li> SMOKED RICOTTA TERRINE   ........................................................... 12$ <span> ricotta, shallots, cheddar, capers</span></li>
+								<li> SMOKED RICOTTA TERRINE   ........................................................... 12$ <span> ricotta, shallots, cheddar, capers</span></li>
+								<li> SMOKED RICOTTA TERRINE   ........................................................... 12$ <span> ricotta, shallots, cheddar, capers</span></li>
+								<li> SMOKED RICOTTA TERRINE   ........................................................... 12$ <span> ricotta, shallots, cheddar, capers</span></li>
+								<li> SMOKED RICOTTA TERRINE   ........................................................... 12$ <span> ricotta, shallots, cheddar, capers</span></li>
+								<li> SMOKED RICOTTA TERRINE   ........................................................... 12$ <span> ricotta, shallots, cheddar, capers</span></li>
+								
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	
+        
+	<!-- footer Section -->
+	
+	<footer id="footer" class="footer">
+		<div class="container">
+			<div class="row">
+				
+				<div class="col-sm-5 col-sm-offset-7 col-xs-10 col-xs-offset-2">
+					<div class="contact_area wow slideInLeft" data-wow-duration="2s">
+						<div class="head_title text-center">
+							<h2>Contact</h2>
+							<div class="separetor"></div>
+						</div>
+						
+						<div class="main_contact_content">
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="single_contact text-left">
+										<h5>Veggie </h5>
+										<span>3428 Magnolia Avenue</span> 
+										<span>Hackettstown, NJ 07840</span>
+									</div>
+								</div>
+								
+								<div class="col-sm-6">
+									<div class="single_contact text-left">
+										<h5>Reservations</h5>
+										<span>reservations@vegggie.com</span> 
+										<span>+48 202-555-0114</span>
+									</div>
+								</div>
+							</div>
+							
+							<div class="contact_form_area">
+								<h3>Contact form</h3>
+								<form action="#" id="formid">
+									<div class="row">
+										<div class="col-sm-6 col-xs-6">
+											<div class="form-group">
+												<input type="text" class="form-control" name="name" placeholder="first name">
+											</div>
+										</div>
+
+										<div class="col-sm-6 col-xs-6">
+											<div class="form-group">
+												<input type="email" class="form-control" name="email" placeholder="Email">
+											</div>
+										</div>
+									</div>
+									
+									<div class="row">
+										<div class="col-sm-12">
+											<div class="form-group">
+												<textarea class="form-control" name="message" rows="3" placeholder="Message"></textarea>
+											</div>
+											
+											
+										</div>
+
+										<div class="form_btn_area text-center">
+											<a href="" class="btn">Send</a>
+										</div>
+									</div>
+								</form>	
+							</div>
+							
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			
+			
+			<div class="row">
+				<div class="copyright_text_area">
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<div class="single_footer text-right wow zoomIn" data-wow-duration="2s">
+							<p>Made with <i class="fa fa-heart"></i> by <a href="https://github.com/vuducdung93">Vu Dung</a>2018. All Rights Reserved</p>
+						</div>
+					</div>
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<div class="single_footer text-right">
+							
+							<div class="footer_socail wow zoomIn" data-wow-duration="1.5s">
+								<a href=""><i class="fa fa-facebook"></i></a>
+								<a href=""><i class="fa fa-linkedin"></i></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	
 
 
-                    </div>
-
-                </div>
-            </section><!-- End of Banner Section -->
-            <!--end shopping-cart -->
-
-
-
-            <section id="features" class="features sections">
-                <div class="container">
-                    <div class="row">
-                        <div class="features_content text-center">
-                            <div class="col-md-4">
-                                <div class="sinle_features wow slideInUp" data-wow-duration="1s">
-                                    <img src="images/icon1.png" alt="" />
-                                    <h5>Turnip greens</h5>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisc Pellentesque vel enim a elit viverra elementuma. Aliquam erat volutpat. </p>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="sinle_features wow slideInUp" data-wow-duration="1.5s">
-                                    <img src="images/icon1.png" alt="" />
-                                    <h5>Turnip greens</h5>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisc Pellentesque vel enim a elit viverra elementuma. Aliquam erat volutpat. </p>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="sinle_features wow slideInUp" data-wow-duration="2s">
-                                    <img src="images/icon1.png" alt="" />
-                                    <h5>Turnip greens</h5>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisc Pellentesque vel enim a elit viverra elementuma. Aliquam erat volutpat. </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section><!-- End of Abouts Section -->	
-
-            <section id="special" class="special sections">
-                <div class="container">
-                    <div class="row">
-                        <div class="head_title text-center wow slideInLeft" data-wow-duration="1.5s">
-                            <h2>Menu</h2>
-                            <div class="separetor"></div>
-                        </div>
-                        <div id="listproduct" class="main_special text-center wow slideInUp" data-wow-duration="3s">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-
-
-
-            <section id="abouts" class="abouts sections">
-                <div class="container">
-                    <div class="row">
-                        <div class="main_abouts">
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="single_abouts wow slideInLeft" data-wow-duration="2s">
-                                    <div class="head_title text-center">
-                                        <h2>About us</h2>
-                                        <div class="separetor"></div>
-                                    </div>
-
-                                    <p>Hơn 1 năm không phải là một chặng đường dài! Nhưng những gì mà Hoa Trà đã gây dựng được để đứng vững giữa vô vàn thương hiệu trà sữa không hề dễ dàng. Một thương hiệu trà sữa thân quen gắn liền với thanh xuân của thế hệ 8x, 9x và cả 10x trên khắp Việt Nam trong suốt thập kỷ qua.</p>
-                                    <div class="signature_img text-right">
-                                        <img src="images/signature.png" alt="" />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="single_abouts wow slideInRight" data-wow-duration="2s">
-                                    <img src="images/abimg.png" alt="" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section><!-- End of Abouts Section -->
-
-            <section id="menus" class="menus sections">
-                <div class="container">
-                    <div class="row">
-                        <div class="main_menus">
-                            <div class="head_title text-center wow slideInDown" data-wow-duration="2s">
-                                <h2>Menu</h2>
-                                <div class="separetor"></div>
-                            </div>
-
-                            <div class="menus_top_menu text-center wow slideInDown" data-wow-duration="1.5s">
-                                <ul>
-                                    <li class="active"><a href="">Starters</a></li>
-                                    <li><a href="">Main Dishes</a></li>
-                                    <li><a href="">Desserts</a></li>
-                                    <li><a href="">Drinks</a></li>
-                                </ul>
-                            </div>
-
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="single_menus wow slideInLeft" data-wow-duration="1.5s">
-                                    <ul>
-                                        <li> SMOKED RICOTTA TERRINE   ........................................................... 12$ <span> ricotta, shallots, cheddar, capers</span></li>
-                                        <li> SMOKED RICOTTA TERRINE   ........................................................... 12$ <span> ricotta, shallots, cheddar, capers</span></li>
-                                        <li> SMOKED RICOTTA TERRINE   ........................................................... 12$ <span> ricotta, shallots, cheddar, capers</span></li>
-                                        <li> SMOKED RICOTTA TERRINE   ........................................................... 12$ <span> ricotta, shallots, cheddar, capers</span></li>
-                                        <li> SMOKED RICOTTA TERRINE   ........................................................... 12$ <span> ricotta, shallots, cheddar, capers</span></li>
-                                        <li> SMOKED RICOTTA TERRINE   ........................................................... 12$ <span> ricotta, shallots, cheddar, capers</span></li>
-                                        <li> SMOKED RICOTTA TERRINE   ........................................................... 12$ <span> ricotta, shallots, cheddar, capers</span></li>
-
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="single_menus wow slideInRight" data-wow-duration="1.5s">
-                                    <ul>
-                                        <li> SMOKED RICOTTA TERRINE   ........................................................... 12$ <span> ricotta, shallots, cheddar, capers</span></li>
-                                        <li> SMOKED RICOTTA TERRINE   ........................................................... 12$ <span> ricotta, shallots, cheddar, capers</span></li>
-                                        <li> SMOKED RICOTTA TERRINE   ........................................................... 12$ <span> ricotta, shallots, cheddar, capers</span></li>
-                                        <li> SMOKED RICOTTA TERRINE   ........................................................... 12$ <span> ricotta, shallots, cheddar, capers</span></li>
-                                        <li> SMOKED RICOTTA TERRINE   ........................................................... 12$ <span> ricotta, shallots, cheddar, capers</span></li>
-                                        <li> SMOKED RICOTTA TERRINE   ........................................................... 12$ <span> ricotta, shallots, cheddar, capers</span></li>
-                                        <li> SMOKED RICOTTA TERRINE   ........................................................... 12$ <span> ricotta, shallots, cheddar, capers</span></li>
-
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-
-
-            <!-- footer Section -->
-
-            <footer id="footer" class="footer">
-                <div class="container">
-                    <div class="row">
-
-                        <div class="col-sm-5 col-sm-offset-7 col-xs-10 col-xs-offset-2">
-                            <div class="contact_area wow slideInLeft" data-wow-duration="2s">
-                                <div class="head_title text-center">
-                                    <h2>Contact</h2>
-                                    <div class="separetor"></div>
-                                </div>
-
-                                <div class="main_contact_content">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="single_contact text-left">
-                                                <h5>Veggie </h5>
-                                                <span>3428 Magnolia Avenue</span> 
-                                                <span>Hackettstown, NJ 07840</span>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-6">
-                                            <div class="single_contact text-left">
-                                                <h5>Reservations</h5>
-                                                <span>reservations@vegggie.com</span> 
-                                                <span>+48 202-555-0114</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="contact_form_area">
-                                        <h3>Contact form</h3>
-                                        <form action="#" id="formid">
-                                            <div class="row">
-                                                <div class="col-sm-6 col-xs-6">
-                                                    <div class="form-group">
-                                                        <input type="text" class="form-control" name="name" placeholder="first name">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-sm-6 col-xs-6">
-                                                    <div class="form-group">
-                                                        <input type="email" class="form-control" name="email" placeholder="Email">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-sm-12">
-                                                    <div class="form-group">
-                                                        <textarea class="form-control" name="message" rows="3" placeholder="Message"></textarea>
-                                                    </div>
-
-
-                                                </div>
-
-                                                <div class="form_btn_area text-center">
-                                                    <a href="" class="btn">Send</a>
-                                                </div>
-                                            </div>
-                                        </form>	
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="copyright_text_area">
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="single_footer text-right wow zoomIn" data-wow-duration="2s">
-                                    <p>Made with <i class="fa fa-heart"></i> by <a href="https://github.com/vuducdung93">Vu Dung</a>2018. All Rights Reserved</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="single_footer text-right">
-
-                                    <div class="footer_socail wow zoomIn" data-wow-duration="1.5s">
-                                        <a href=""><i class="fa fa-facebook"></i></a>
-                                        <a href=""><i class="fa fa-linkedin"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-
-
-
-            <!-- STRAT SCROLL TO TOP -->
-
-            <div class="scrollup">
-                <a href="#"><i class="fa fa-chevron-up"></i></a>
-            </div>
-        </div>
-        <div class="shopping-cart">
+	<!-- STRAT SCROLL TO TOP -->
+	
+	<div class="scrollup">
+		<a href="#"><i class="fa fa-chevron-up"></i></a>
+	</div>
+    </div>
+    <div class="shopping-cart">
             <div class="shopping-cart-header">
-                <i class="fa fa-shopping-cart cart-icon"></i><span class="badge">3</span>
-                <div class="shopping-cart-total">
-                    <span class="lighter-text">Total:</span>
-                    <span class="main-color-text">$2,229.97</span>
-                </div>
+              <i class="fa fa-shopping-cart cart-icon"></i><span class="badge">3</span>
+              <div class="shopping-cart-total">
+                <span class="lighter-text">Total:</span>
+                <span class="main-color-text">$2,229.97</span>
+              </div>
             </div> <!--end shopping-cart-header -->
 
             <ul class="shopping-cart-items">
-                <li class="clearfix">
-                    <img src="images/1.jpg" alt="item1" />
-                    <span class="item-name">Chim..</span>
-                    <span class="item-price">$849.99</span>
-                    <span class="item-quantity">Quantity: 01</span>
-                </li>
+              <li class="clearfix">
+                <img src="images/1.jpg" alt="item1" />
+                <span class="item-name">Chim..</span>
+                <span class="item-price">$849.99</span>
+                <span class="item-quantity">Quantity: 01</span>
+              </li>
 
-                <li class="clearfix">
-                    <img src="images/1.jpg" alt="item1" />
-                    <span class="item-name">Bướm...</span>
-                    <span class="item-price">$1,249.99</span>
-                    <span class="item-quantity">Quantity: 01</span>
-                </li>
+              <li class="clearfix">
+                <img src="images/1.jpg" alt="item1" />
+                <span class="item-name">Bướm...</span>
+                <span class="item-price">$1,249.99</span>
+                <span class="item-quantity">Quantity: 01</span>
+              </li>
 
-                <li class="clearfix">
-                    <img src="images/1.jpg" alt="item1" />
-                    <span class="item-name">Phao câu....</span>
-                    <span class="item-price">$129.99</span>
-                    <span class="item-quantity">Quantity: 01</span>
-                </li>
+              <li class="clearfix">
+                <img src="images/1.jpg" alt="item1" />
+                <span class="item-name">Phao câu....</span>
+                <span class="item-price">$129.99</span>
+                <span class="item-quantity">Quantity: 01</span>
+              </li>
             </ul>
-
+            
             <a href="#" class="button">Checkout</a>
-        </div>
+    </div>
+	
+	
+	
+	
 
-
-
-
-
-        <script type="text/javascript" src="js/jquery/jquery.js"></script>
-
-        <script type="text/javascript" src="js/script.js"></script>
-
-        <script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
-
-        <script type="text/javascript" src="js/fancybox/jquery.fancybox.pack.js"></script>
-
-        <script type="text/javascript" src="js/nivo-lightbox/nivo-lightbox.min.js"></script>
-
-        <script type="text/javascript" src="js/owl-carousel/owl.carousel.min.js"></script>
-
-        <script>
+	<script type="text/javascript" src="js/jquery/jquery.js"></script>
+	
+	<script type="text/javascript" src="js/script.js"></script>
+	
+	<script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
+	
+	<script type="text/javascript" src="js/fancybox/jquery.fancybox.pack.js"></script>
+	
+	<script type="text/javascript" src="js/nivo-lightbox/nivo-lightbox.min.js"></script>
+	
+	<script type="text/javascript" src="js/owl-carousel/owl.carousel.min.js"></script>
+	
+	<script>
             //show shoping cart
             var listProduct;
             var itemProduct;
-            (function () {
+            (function(){
 
-                $("#cart").on("click", function () {
-                    var a = $(".shopping-cart").css("display");
+              $("#cart").on("click", function() {
+               var a= $(".shopping-cart").css("display");
 
-                    if (a == "none") {
-                        $(".shopping-cart").css("display", "inline");
-                    } else {
-                        $(".shopping-cart").css("display", "none");
-                    }
-                });
+               if(a=="none"){
+                   $(".shopping-cart").css("display","inline");
+               }else{
+                   $(".shopping-cart").css("display","none");
+               }
+              });
 
             })();
-
+            
             //end show shoping cart
             $(window).load(function () {
                 $.ajax({
-                    type: 'GET',
-                    url: '/ListProduct',
-                    success: function (data) {
-                        listProduct = jQuery.parseJSON(data);
-                        listProduct.forEach(function myfunction(item) {
-                            var html = ` <d iv class= " col-md-4 col-sm-6 col-xs-6 single_special" >
-                                    <div class="single_special_img">
-                                    <img style="width: 248px;height: 248px" src="images/` + item.image + `" alt="" />
-                                    </div>
-                                    <div class="text-center">
-                                <br>
-                        <h4>` + item.name + `</h4>
-<p style="color :red;">` + item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + `đ</p>
-                        <button type="button" class="btn btn-danger btnCart" style="color: black">Add to cart<input type="text" hidden value="` + item.id + `"/></button>
-                        </div>
-                        </br>
-                        </div>`;
-                            document.getElementById("listproduct").innerHTML += html;
-                        });
-                    }
-                        });
-                        });
-
-                        $(document).on('click', '.btnCart', function () {
-                            var id = $(this).children("inpu t ").val();
-                            listProduct.forEach(function myfunction(item){
-                            if (item.id == id){
-                            itemProduct = item;
-                                    var html = `<div class = "modal-content">
+                        type: 'GET',
+                        url: '/ListProduct',
+                        success: function (data) {
+                            listProduct=jQuery.parseJSON(data);
+                            listProduct.forEach(function myfunction(item) {
+                                var html=` <div class="col-md-4 col-sm-6 col-xs-6 single_special" >
+                                        <div class="single_special_img">
+                                            <img style="width: 248px;height: 248px" src="images/`+item.image+`" alt="" />
+                                        </div>
+                                        <div class="text-center">
+                                            <br>
+                                            <h4>`+item.name+`</h4>
+                                            <p style="color :red;">`+item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +`đ</p>
+                                            <button type="button" class="btn btn-danger btnCart" style="color: black">Add to cart<input type="text" hidden value="`+item.id+`"/></button>
+                                        </div>
+                                        </br>
+                                    </div>`;
+                                    document.getElementById("listproduct").innerHTML += html;
+                           });
+                        }
+                    });    
+            });
+            
+            $(document).on('click', '.btnCart', function () {
+                var id=$(this).children("input").val();
+                listProduct.forEach(function myfunction(item){
+                    if(item.id==id){
+                        itemProduct=item;
+                        var html=`<div class="modal-content">
                                     
                                     <div class="col-md-12 col-xs-12 col-sm-12" style="background-color: whitesmoke;margin-top: 8px;">
                                         
-                                        <img style="width:30%; float: left;" src="images/` + item.imag e  + `" alt= " " />
+                                        <img style="width:30%; float: left;" src="images/`+item.image+`" alt="" />
                                         <div style="padding-left: 5px;padding-top: 5px;width: 30%; float: left;">
-                                            <h3>` + item. n ame + `</ h 3>
-                                            <p>` + i t em.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +   `đ</p>
+                                            <h3>`+item.name+`</h3>
+                                            <p>`+item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+`đ</p>
                                         </div>
                                         <div style="float: right; width: 40%;">
                                             <a id="close" style="font-size: 40px; float:right;height:30px; top:0px; right:0px;">&times;</a>
@@ -597,17 +597,17 @@
                document.getElementById("tongtien").innerHTML = money1product.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+'đ';
            }
         </script>
+	
+	<script type="text/javascript" src="js/jquery-easing/jquery.easing.1.3.js"></script>
+	<script type="text/javascript" src="js/wow/wow.min.js"></script>
+</body>
+	<!-- /.container -->
 
-        <script type="text/javascript" src="js/jquery-easing/jquery.easing.1.3.js"></script>
-        <script type="text/javascript" src="js/wow/wow.min.js"></script>
-    </body>
-    <!-- /.container -->
-
-    <script type="text/javascript"
-    src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
-
+	<script type="text/javascript"
+		src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+                
+                
+        
 
 </body>
 </html>
