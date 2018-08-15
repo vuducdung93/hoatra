@@ -592,7 +592,7 @@ a:hover{
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none;
+    user-select:none;
 }
 
 /* Hide the browser's default checkbox */
@@ -648,5 +648,4 @@ a:hover{
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
-
 
