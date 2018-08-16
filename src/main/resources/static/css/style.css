@@ -569,20 +569,38 @@ a:hover{
     z-index:100000 !important;
     cursor: pointer;
 }
-*/
-.modal-content {
-    background-color: #fefefe;
-    position: fixed;
-    left: 50%; 
-    top: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    -webkit-transform: translateX(-50%) translateY(-50%);
-    border: 1px solid #888;
-    width: 60%; /* Could be more or less, depending on screen size */
-    height:auto;
-    z-index:100000;
-    cursor: pointer;
+*/  @media only screen and (max-width: 2880px) {
+     .modal-content {
+        background-color: #fefefe;
+        position: fixed;
+        left: 50%; 
+        top: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        -webkit-transform: translateX(-50%) translateY(-50%);
+        border: 1px solid #888;
+        width: 50%; /* Could be more or less, depending on screen size */
+        height:auto;
+        z-index:100000;
+        cursor: pointer;
+    }
+    @media only screen and (max-width: 1024px) {
+     .modal-content {
+        background-color: #fefefe;
+        position: fixed;
+        left: 50%; 
+        top: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        -webkit-transform: translateX(-50%) translateY(-50%);
+        border: 1px solid #888;
+        width: 100%; /* Could be more or less, depending on screen size */
+        height:auto;
+        z-index:100000;
+        cursor: pointer;
+    }
 }
+
+
+
 /* The customcheck */
 .customcheck {
     display: block;
