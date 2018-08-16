@@ -525,11 +525,11 @@
                                         </div>
                                         <div style="float: right; width: 40%;">
                                             <a id="close" style="font-size: 40px; float:right;height:3em; top:0px; right:0px;">&times;</a>
-                                            <div style="float: right; width:100%; padding-top: 30%;">
-                                                <button  id="plus" style="text-align: center;background:white ;width: 1.5em;height: 1.5em;font-size:2.5em; border: 1px solid red; border-radius: 10px; color:red;">+</button>
+                                            <div style="float: right; width:100%;">
+                                                <button  id="plus" style="text-align: center;background:white ;width: 70px;height: 70px;font-size:2.5em; border: 1px solid red; border-radius: 10px; color:red;">+</button>
 
-                                                <input disabled id="quantity" style=" text-align: center;background:white ;width: 2em;height: 1.85em;font-size:1.75em; border-radius: 10px; color:black;border: 1px solid black;" value="1"/>
-                                                <button id="minus" style="text-align: center;background:blue ;width: 1.5em;height: 1.5em;font-size:2.5em; border-radius: 10px; color:white;">-</button>
+                                                <button disabled id="quantity" style=" text-align: center;background:white ;width: 70px;height: 70px;font-size:1.75em; border-radius: 10px; color:black;border: 1px solid black;" />1</button>
+                                                <button id="minus" style="text-align: center;background:blue ;width:70px;height: 70px;font-size:2.5em; border-radius: 10px; color:white;">-</button>
                                             </div>
                                             
                                         </div>
@@ -618,14 +618,14 @@
                 document.getElementById("overlay").style.display = "none";
             });
             $(document).on('click', '#plus', function () {
-                var i= Number($("#quantity").val())+1;
-                $("#quantity").val(i);
+                var i= Number($("#quantity").text())+1;
+                $("#quantity").text(i);
                 tinhtien();
             });
             $(document).on('click', '#minus', function () {
-                var i= Number($("#quantity").val())-1;
+                var i= Number($("#quantity").text())-1;
                 if(i>0){
-                    $("#quantity").val(i);
+                    $("#quantity").text(i);
                 }
                 tinhtien();
             });
@@ -635,7 +635,7 @@
                $('input[name="topping"]:checked').each(function() {
                     moneytopping=moneytopping+Number(this.value);
                  });
-               var money1product=(moneysize+moneytopping+Number(itemProduct.price))*Number($('#quantity').val());
+               var money1product=(moneysize+moneytopping+Number(itemProduct.price))*Number($('#quantity').text());
                document.getElementById("tongtien").innerHTML = money1product.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+'đ';
            }
         </script>
