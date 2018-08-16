@@ -555,7 +555,7 @@ a:hover{
 }
 
 
-/* moi */
+/* moi 
 #overlay {
     position: fixed;
     display: none;
@@ -566,20 +566,22 @@ a:hover{
     right: 0;
     bottom: 0;
     background-color: rgba(0,0,0,0.5);
-    z-index: 2;
+    z-index:100000 !important;
     cursor: pointer;
 }
-
+*/
 .modal-content {
     background-color: #fefefe;
-    position: absolute;
+    position: fixed;
     left: 50%; 
     top: 50%;
     transform: translateX(-50%) translateY(-50%);
     -webkit-transform: translateX(-50%) translateY(-50%);
     border: 1px solid #888;
-    width: 40%; /* Could be more or less, depending on screen size */
+    width: 60%; /* Could be more or less, depending on screen size */
     height:auto;
+    z-index:100000;
+    cursor: pointer;
 }
 /* The customcheck */
 .customcheck {

@@ -7,6 +7,7 @@ package com.hoatra.model;
 
 import com.hoatra.bean.Product;
 import com.hoatra.bean.Topping;
+import com.hoatra.bean.levelSugar;
 import java.util.ArrayList;
 
 /**
@@ -26,11 +27,19 @@ public class DAO {
     
     public ArrayList<Topping> getListTopping(){
         ArrayList<Topping> arr=new ArrayList<>();
-        arr.add(new Topping("Trân châu đen",5000));
-        arr.add(new Topping("Trân châu trắng",5000));
-        arr.add(new Topping("Thạch nha đam",5000));
-        arr.add(new Topping("Kem",5000));
-        arr.add(new Topping("Trân châu giòn",5000));
+        arr.add(new Topping(1,"Kem cheese",10000));
+        arr.add(new Topping(2,"Trân châu trắng khựa",8000));
+        arr.add(new Topping(3,"Trân châu đường đen (Milk & Milk Tea)",8000));
+        arr.add(new Topping(4,"Trân châu bạch kim",5000));
+        arr.add(new Topping(5,"Thạch nha đam",5000));
+        return arr;
+    }
+    public ArrayList<levelSugar> getListLevelSugar(){
+        ArrayList<levelSugar> arr=new ArrayList<>();
+        arr.add(new levelSugar(1,"100% đường"));
+        arr.add(new levelSugar(2,"70% đường"));
+        arr.add(new levelSugar(3,"30% đường"));
+        arr.add(new levelSugar(4,"0% đường"));
         return arr;
     }
 }
