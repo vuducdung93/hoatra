@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Bootstrap Example</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" th:href="@{/css/styleMobile.css}" href="../../css/styleMobile.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <style>
+            body {
+                position: relative; 
+            }
+            #section1 {padding-top: 100px;color: black; background-color: #ffffff;}
+            #section2 {color: black; background-color: #ffffff;}
+            #section3 {color: black; background-color: #ffffff;}
+            #section4 {color: black; background-color: #ffffff;}
+
+        </style>
+    </head>
+    <body data-spy="scroll" data-target=".navbar" data-offset="100">
+
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+
+                    <a style="font-size:24px; font-weight: bold;" class="navbar-brand" href="#">Hoa Trà</a>
+                </div>
+
+                <div>
+                    <div id="myNavbar">
+                        <ul class="nav navbar-nav">
+                            <li style="text-align: center;width:25%; float:left;"><a href="#section1">Sữa tươi</a></li>
+                            <li style="text-align: center;width:25%; float:left;"><a href="#section2">Trà</a></li>
+                            <li style="text-align: center;width:25%; float:left;"><a href="#section3">Trà kem</a></li>
+                            <li style="text-align: center;width:25%; float:left;"><a href="#section4">Trà sữa</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>    
+
+        <div id="section1" class="container-fluid">
+            <h3>Sữa tươi</h3>
+            <table id="tasection1" style="width:100%">
+                
+            </table>
+                
+            
+        </div>
+        <div id="section2" class="container-fluid">
+            <h3>Trà</h3>
+            <table id="tasection2" style="width:100%">
+                
+            </table>
+        </div>
+        <div id="section3" class="container-fluid">
+            <h3>Trà kem</h3>
+            <table id="tasection3" style="width:100%">
+                
+            </table>
+        </div>
+        <div id="section4" class="container-fluid">
+            <h3>Trà sữa</h3>
+            <table id="tasection4" style="width:100%">
+                
+            </table>
+        </div>
+        <div class="container-fluid" style="height: 500px;">
+            
+        </div>
+        <script type="text/javascript" src="js/jquery/jquery.js"></script>
+        <script>
+            var listProduct;
+            //chinh lai phan thanh dieu huong
+            var offset = 100;
+
+            $('.navbar li a').click(function (event) {
+                event.preventDefault();
+                $($(this).attr('href'))[0].scrollIntoView();
+                scrollBy(0, -offset);
+            });
+            //end chinh lai phan thanh dieu huong
+            
+            $(window).load(function () {
+                $.ajax({
+                        type: 'GET',
+                        url: '/ListProduct',
+                        success: function (data) {
+                            listProduct=jQuery.parseJSON(data);
+                            listProduct.forEach(function myfunction(item) {
+                                var html=`  <tr style="width:100%">
+                                                <td style="width:20%"><img src="/images/`+item.image+`" alt="Smiley face" width="100%"></td>
+                                                <td style="width:60%; padding-left: 10px;">
+                                                    <h4>`+item.name+`</h4>`+item.price+
+                                                    
+                                                `</td>
+                                                <td style="width:60%"><button type="button" class="btn btn-danger">Add</button></td>
+                                            </tr>`;
+                                if(item.catogeryId=='1'){
+                                    document.getElementById("tasection1").innerHTML += html;
+                                }else if(item.catogeryId=='2'){
+                                    document.getElementById("tasection2").innerHTML += html;
+                                }else if(item.catogeryId=='3'){
+                                    document.getElementById("tasection3").innerHTML += html;
+                                }else{
+                                    document.getElementById("tasection4").innerHTML += html;
+                                }
+                                            
+                            });
+                        }
+                    });
+            });
+        </script>
+
+    </body>
+
+
+</html>

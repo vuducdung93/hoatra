@@ -17,12 +17,13 @@ public class Product {
     String name;
     int price;
     String image;
-
-    public Product(int id,String name, int price, String image) {
+    int catogeryId;
+    public Product(int id,String name, int price, String image,int catogeryId) {
         this.id=id;
         this.name = name;
         this.price = price;
         this.image=image;
+        this.catogeryId=catogeryId;
     }
 
     public int getId() {
@@ -60,6 +61,14 @@ public class Product {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public int getCatogeryId() {
+        return catogeryId;
+    }
+
+    public void setCatogeryId(int catogeryId) {
+        this.catogeryId = catogeryId;
     }
     
 }

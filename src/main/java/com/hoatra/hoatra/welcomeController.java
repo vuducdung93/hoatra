@@ -27,9 +27,21 @@ public class welcomeController {
     List listProuct= new DAO().getListProduct();
     List listTopping= new DAO().getListTopping();
     List listLevelSugar=new DAO().getListLevelSugar();
-    @RequestMapping("/")
-    public String welcome() {	
-            return "welcome";
+    @RequestMapping(value= "/",method=RequestMethod.GET)
+    public String checkscreen() {
+        
+            return "checkscreen";
+            
+    }
+    @RequestMapping(value= "/", method=RequestMethod.POST)
+    public String welcome(HttpServletRequest request) {
+            int width=Integer.parseInt(request.getParameter("width"));
+            int height=Integer.parseInt(request.getParameter("height"));
+            if(width<=480)
+                return "welcomeMobile";
+            else
+                return "welcomeDesktop";
+            
     }
     
     @RequestMapping("/ListProduct")
