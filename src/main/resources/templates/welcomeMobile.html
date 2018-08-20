@@ -195,7 +195,7 @@
                 });
             });
             
-            
+            var height=$(window).height();
             
             $(document).on('click', '.btnCart', function () {
                 var id=$(this).children("input").val();
@@ -212,7 +212,7 @@
                                             <p>`+item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+`đ</p>
                                         </div>
                                         <div style="float: right; width: 40%;">
-                                            <a id="close" style="font-size: 40px; float:right;height:3em; top:0px; right:0px;">&times;</a>
+                                            <a id="close" style="font-size: 40px; float:right;top:0px; right:0px;">&times;</a>
                                             <div style="float: right; width:100%;">
                                                 
                                                 <button id="plus"  style="border-radius:5px;" type="button" class="btn btn-info">+</button>
@@ -248,7 +248,7 @@
                                     <div class="col-md-12 col-xs-12 col-sm-12" style="background-color: whitesmoke;">    
                                         <h4 style="text-transform: capitalize; width: 100%; float:left;">Chọn topping</h4>
                                     </div>
-                                    <div class="col-md-12 col-xs-12 col-sm-12">`;
+                                    <div style="overflow-y: scroll;" class="col-md-12 col-xs-12 col-sm-12">`;
                     //hien thi topping
                     listTopping.forEach(function myfunction(item) {
                         html=html+ `<label style="border-bottom: 1px solid whitesmoke; width: 100%;" class="customcheck">`+item.name

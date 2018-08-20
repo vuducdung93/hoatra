@@ -84,14 +84,14 @@ nav>.active>a{
 
 .modal-content {
         background-color: #fefefe;
-        position: absolute;
+        position: fixed;
         left: 50%; 
         top: 50%;
         transform: translateX(-50%) translateY(-50%);
         -webkit-transform: translateX(-50%) translateY(-50%);
         border: 1px solid #888;
         width: 100%; /* Could be more or less, depending on screen size */
-        height:100%;
+        height:auto;
         z-index:100000;
         cursor: pointer;
 }
