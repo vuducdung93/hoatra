@@ -72,11 +72,19 @@
         <div class="container-fluid" style="height: 300px;">
             
         </div>
+        <!-- layout chon option tung mon hang-->
         <div id="overlay">
         
         
         </div>
+        <!-- end layout chon option tung mon hang-->
         
+        <!-- form checkout -->
+        <form method="POST" action="/checkout">
+                <input id="eobiet" type="text" value="" hidden name="itemcartArr"/> 
+                <input id="submit" type="submit" hidden>
+        </form>
+        <!-- end form checkout -->
         <footer class="footer">
             <div class="container">
                 <ul class="social-icon animate pull-right">
@@ -84,7 +92,7 @@
                     <li><a href="#" title="twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
                     <li><a href="#" title="google plus" target="_blank"><i class="fa fa-google-plus"></i></a></li>
                 </ul>
-                <img style="height:50px;width: 50px;" src="/images/shopping.png"/>
+                <div id="cart"><img style="height:50px;width: 50px;" src="/images/shopping.png"/><span id="slCart" class="badge">0</span></div>
             </div>
         </footer>
             
@@ -98,6 +106,17 @@
             var listTopping;
             var listLevelSugar;
             var itemcartArr=new Array();
+            
+            $("#cart").on("click", function() {
+                $('#eobiet').val(JSON.stringify(itemcartArr));
+                $('#submit').click();
+                /*$.post("/postcheckout",
+                {
+                    itemcartArr:JSON.stringify(itemcartArr)
+                });*/
+                
+            });
+            
             //chinh lai phan thanh dieu huong
             var offset = 200;
 
@@ -109,12 +128,13 @@
             //end chinh lai phan thanh dieu huong
             function addtocart() {
                 var mucduong=$('input[name=mucduong]:checked').siblings('p').text();
+                
                 var topping=new Array();
                 $('input[name="topping"]:checked').each(function() {
                     topping.push($(this).siblings('p').text());
                 });
                 var size=$('input[name=size]:checked').siblings('p').text();
-                var quantity=$('#quantity').val();
+                var quantity=$('#quantity').text();
                 var idProduct=itemProduct.id;
                 var itemcart = {
                     idProduct:idProduct,
@@ -232,7 +252,7 @@
                     //hien thi topping
                     listTopping.forEach(function myfunction(item) {
                         html=html+ `<label style="border-bottom: 1px solid whitesmoke; width: 100%;" class="customcheck">`+item.name
-                                                    +`<input onclick="tinhtien()" type="checkbox" name="topping" value="10000">
+                                                    +`<input onclick="tinhtien()" type="checkbox" name="topping" value="`+item.price+`">
                                                      <p hidden>`+item.id+`</p>
                                                     <span class="checkmark"></span>
                                                     <div style="float:right;">`+item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+`đ</div>

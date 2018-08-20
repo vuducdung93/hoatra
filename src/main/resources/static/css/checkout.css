@@ -59,9 +59,7 @@ and open the template in the editor.
 
 /* Apply clearfix in a few places */
 /* Apply dollar signs */
-.product .product-price:before, .product .product-line-price:before, .totals-value:before {
-  content: '$';
-}
+
 
 /* Body/Header stuff */
 body {
@@ -138,12 +136,12 @@ label {
 .totals .totals-item label {
   float: left;
   clear: both;
-  width: 79%;
+  width: 50%;
   text-align: right;
 }
 .totals .totals-item .totals-value {
   float: right;
-  width: 21%;
+  width: 50%;
   text-align: right;
 }
 .totals .totals-item-total {
@@ -229,9 +227,7 @@ label {
     margin-top: 10px;
   }
 
-  .product .product-line-price:before {
-    content: 'Item Total: $';
-  }
+  
 
   .totals .totals-item label {
     width: 60%;

@@ -15,19 +15,31 @@ public class cartItem {
     Product product;
     int quantity;
     boolean size;
-    List listTopping;
+    List<Topping> listTopping;
     levelSugar sugar;
-   
+    int pricecart;
 
     public cartItem() {  
     }
 
-    public cartItem(Product product,int quantity, boolean size, List listTopping, levelSugar sugar) {
+    public cartItem(Product product,int quantity, boolean size, List<Topping> listTopping, levelSugar sugar) {
         this.product=product;
         this.quantity = quantity;
         this.size = size;
         this.listTopping = listTopping;
         this.sugar = sugar;
+        if(size==true){
+            this.pricecart=product.getPrice()+8000;
+            listTopping.forEach((t) -> {
+                this.pricecart+=t.getPrice();
+            });
+            
+        }else{
+            this.pricecart=product.getPrice();
+            listTopping.forEach((t) -> {
+                this.pricecart+=t.getPrice();
+            });
+        }
     }
 
     public int getQuantity() {
@@ -46,11 +58,11 @@ public class cartItem {
         this.size = size;
     }
 
-    public List getListTopping() {
+    public List<Topping> getListTopping() {
         return listTopping;
     }
 
-    public void setListTopping(List listTopping) {
+    public void setListTopping(List<Topping> listTopping) {
         this.listTopping = listTopping;
     }
 
@@ -68,6 +80,14 @@ public class cartItem {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public int getPricecart() {
+        return pricecart;
+    }
+
+    public void setPricecart(int pricecart) {
+        this.pricecart = pricecart;
     }
     
     
