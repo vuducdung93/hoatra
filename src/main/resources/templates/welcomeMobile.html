@@ -14,21 +14,24 @@
             body {
                 position: relative; 
             }
-            #section1 {padding-top: 200px;color: black; background-color: #ffffff;}
+            #section1 {padding-top: 50px;color: black; background-color: #ffffff;}
             #section2 {color: black; background-color: #ffffff;}
             #section3 {color: black; background-color: #ffffff;}
             #section4 {padding-bottom: 100px;color: black; background-color: #ffffff;}
 
         </style>
     </head>
-    <body data-spy="scroll" data-target=".navbar" data-offset="200">
+    
 
+    <body onscroll="abc()"  data-spy="scroll" data-target=".navbar" data-offset="50">
+        
+            <img id="test" class="navbar-header" src="/images/banner.jpg" style="width:100%;"/>
+                    
+        
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container-fluid">
-                <div class="navbar-header">
-                    <img src="/images/banner.jpg" style="width:100%;"/>
-                    
-                </div>
+                
+                
 
                 <div>
                     <div id="myNavbar">
@@ -118,7 +121,7 @@
             });
             
             //chinh lai phan thanh dieu huong
-            var offset = 200;
+            var offset = 50;
 
             $('.navbar li a').click(function (event) {
                 event.preventDefault();
@@ -326,7 +329,32 @@
                var money1product=(moneysize+moneytopping+Number(itemProduct.price))*Number($('#quantity').text());
                document.getElementById("tongtien").innerHTML = money1product.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+'đ';
            }
-            
+           var height=$('#test').innerHeight();
+           function abc(){
+               
+               //var heightall=$('#test').innerHeight();
+               if(($(this).scrollTop()+20)>= height) {
+                    $('.navbar-fixed-top').css('position','fixed');
+                    
+                    $('.navbar-fixed-top').css('top','0');
+                    //$('.navbar-fixed-top').css('animation-name','scroll');
+                    //$('.navbar-fixed-top').css('animation-duration','1s');
+                    
+                }else{
+                    $('.navbar-fixed-top').css('position','absolute');
+                    $('.navbar-fixed-top').css('top','auto');
+                }
+                //console.log($(this).scrollTop() + '  '+$('#test').innerHeight()+ '  '+$(this).innerHeight());
+                
+           }
+           /*jQuery(function($) {
+                $('body').on('scroll', function() {
+                    if($(this).scrollTop() + $('#test').innerHeight() >= $('#test')[0].scrollHeight) {
+                        alert('end reached');
+                    }
+                })
+                });*/
+ 
             
             
             

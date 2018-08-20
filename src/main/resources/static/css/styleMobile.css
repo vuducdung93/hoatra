@@ -22,6 +22,10 @@ and open the template in the editor.
 #myNavbar> ul>li>a{
     color:white;
 }
+.navbar-fixed-top {
+    top: auto;
+    position: ralative;
+}
 
 nav>.active>a{
     background-color:#546076 !important;
@@ -163,4 +167,7 @@ nav>.active>a{
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
+}
+@keyframes scroll {
+    100% {position:fixed; top:0px;}
 }
