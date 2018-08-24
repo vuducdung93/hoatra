@@ -3,23 +3,33 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.hoatra.hoatra;
+package com.hoatra.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hoatra.DAO.ToppingProductDAO;
+import com.hoatra.DAO.categoriesDAO;
+import com.hoatra.DAO.productDAO;
 import com.hoatra.bean.Product;
 import com.hoatra.bean.Topping;
 import com.hoatra.bean.cartItem;
 import com.hoatra.bean.itemProduct;
 import com.hoatra.bean.levelSugar;
+import com.hoatra.DAO.userDAO;
+import com.hoatra.model.CategoriesInfo;
 import com.hoatra.model.DAO;
+import com.hoatra.model.ProductInfo;
+import com.hoatra.model.ToppingInfo;
+import com.hoatra.model.ToppingProductInfo;
+import com.hoatra.model.UserInfo;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 import javax.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,10 +43,23 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author vudung
  */
 @Controller
+
 public class welcomeController {
+    @Autowired(required=true)
+    private userDAO userdao;
+    
+    @Autowired(required=true)
+    private categoriesDAO categoriesdao;
+    
+    @Autowired(required=true)
+    private productDAO productdao;
+    
+    @Autowired(required=true)
+    private ToppingProductDAO ToppingProductdao;
     List<Product> listProuct= new DAO().getListProduct();
     List<Topping> listTopping= new DAO().getListTopping();
     List<levelSugar> listLevelSugar=new DAO().getListLevelSugar();
+    
     @RequestMapping(value= "/",method=RequestMethod.GET)
     public String checkscreen() {
         
@@ -54,18 +77,36 @@ public class welcomeController {
             
     }
     
+    // tra ve listproduct khi load categories
     @RequestMapping("/ListProduct")
     @ResponseBody
     public String getListProduct() throws JsonProcessingException{
-        String s=new ObjectMapper().writeValueAsString(listProuct);
+        String s=new ObjectMapper().writeValueAsString(productdao.getListProduct());
         return s;
     }
-    @RequestMapping("/ListTopping")
+    
+    // tra ve listcategories khi load full product
+    @RequestMapping("/ListCategories")
     @ResponseBody
-    public String getListTopping() throws JsonProcessingException{
-        String s=new ObjectMapper().writeValueAsString(listTopping);
+    public String getListCategories() throws JsonProcessingException{
+        String s=new ObjectMapper().writeValueAsString(categoriesdao.getListCate());
         return s;
     }
+    
+    
+    // tra ve details cua san pham khi click vao plus
+    @RequestMapping("/Productdetails")
+    @ResponseBody
+    public String getProductdetails(HttpServletRequest request) throws JsonProcessingException{
+        int id=Integer.parseInt(request.getParameter("id"));    
+        String s=new ObjectMapper().writeValueAsString(ToppingProductdao.getList(id));
+        
+        return s;
+    }
+    
+    
+    
+    
     @RequestMapping("/ListLevelSugar")
     @ResponseBody
     public String getListLevelSugar() throws JsonProcessingException{
@@ -95,5 +136,16 @@ public class welcomeController {
 
         return "checkout2";
     }
-    
+    @RequestMapping("/test")
+    public String test() throws JsonProcessingException{
+        
+//        List<ProductInfo> list=productdao.getListProduct();
+//        String s=new ObjectMapper().writeValueAsString(list);
+//        System.out.println(s);
+//        ToppingProductInfo list=ToppingProductdao.getList(2);
+//        
+//        String s=new ObjectMapper().writeValueAsString(list);
+//        System.out.println(s);
+        return "checkout";
+    }
 }

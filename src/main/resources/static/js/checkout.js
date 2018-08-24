@@ -7,9 +7,9 @@
 
 /* Set rates + misc */
 var taxRate = 0.05;
-var shippingRate = 15.00; 
+//var shippingRate = 15.00; 
 var fadeTime = 300;
-
+var shipping=0;
 
 /* Assign actions */
 
@@ -33,14 +33,17 @@ function recalculateCart()
   });
   
   /* Calculate totals */
-  var tax = subtotal * taxRate;
-  var shipping = (subtotal > 0 ? shippingRate : 0);
-  var total = subtotal + tax + shipping;
+  //var tax = subtotal * taxRate;
+ 
+  if(subtotal>=49000 && subtotal<=109000){
+      shipping=12000;
+  }
+  var total = subtotal + shipping;
   
   /* Update totals display */
   $('.totals-value').fadeOut(fadeTime, function() {
     $('#cart-subtotal').html(subtotal+'d');
-    $('#cart-tax').html(tax);
+    //$('#cart-tax').html(tax);
     $('#cart-shipping').html(shipping);
     $('#cart-total').html(total);
     if(total == 0){
