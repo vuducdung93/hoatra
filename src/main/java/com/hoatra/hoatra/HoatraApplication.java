@@ -59,7 +59,7 @@ public class HoatraApplication {
         properties.put("hibernate.show_sql", env.getProperty("spring.jpa.show-sql"));
         properties.put("current_session_context_class", //
                 env.getProperty("spring.jpa.properties.hibernate.current_session_context_class"));
-         
+        
          
         // Fix Postgres JPA Error:
         // Method org.postgresql.jdbc.PgConnection.createClob() is not yet implemented.
