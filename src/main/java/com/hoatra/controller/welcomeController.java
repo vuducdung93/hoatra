@@ -9,6 +9,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hoatra.DAO.ToppingProductDAO;
+import com.hoatra.DAO.addtocart;
 import com.hoatra.DAO.categoriesDAO;
 import com.hoatra.DAO.productDAO;
 import com.hoatra.bean.Product;
@@ -17,18 +18,23 @@ import com.hoatra.bean.cartItem;
 import com.hoatra.bean.itemProduct;
 import com.hoatra.bean.levelSugar;
 import com.hoatra.DAO.userDAO;
+import com.hoatra.entity.Cart;
+import com.hoatra.entity.User;
+import com.hoatra.model.CartInfo;
 import com.hoatra.model.CategoriesInfo;
 import com.hoatra.model.DAO;
 import com.hoatra.model.ProductInfo;
 import com.hoatra.model.ToppingInfo;
 import com.hoatra.model.ToppingProductInfo;
 import com.hoatra.model.UserInfo;
+import com.hoatra.model.cartItemInfo;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -56,6 +62,9 @@ public class welcomeController {
     
     @Autowired(required=true)
     private ToppingProductDAO ToppingProductdao;
+    
+    @Autowired(required=true)
+    private addtocart addtocartdao;
     List<Product> listProuct= new DAO().getListProduct();
     List<Topping> listTopping= new DAO().getListTopping();
     List<levelSugar> listLevelSugar=new DAO().getListLevelSugar();
@@ -114,38 +123,50 @@ public class welcomeController {
         return s;
     }
     
-    @RequestMapping(value="/checkout", method = RequestMethod.POST)
-    public String postcheckout(@ModelAttribute(value = "itemcartArr") String itemcartArr,Model model) throws IOException{
-        List<itemProduct> listItemProduct=new ObjectMapper().readValue(itemcartArr, new TypeReference<List<itemProduct>>(){});
-        List<cartItem> listcart=new ArrayList<cartItem>();
-        
-        listItemProduct.forEach((t) -> {
-            Product p=listProuct.get(t.getIdProduct()-1);
-            List<Topping> listopping=new ArrayList<Topping>();
-            int[] a=t.getTopping();
-            for(int j=0;j<a.length;j++){
-                Topping f=listTopping.get(a[j]-1);
-                listopping.add(f);
-            }
-            levelSugar l=listLevelSugar.get(t.getMucduong()-1);
-            listcart.add(new cartItem(p,t.getQuantity(),t.isSize(),listopping,l));
-        });
-        model.addAttribute("listcart", listcart);
-        String s=new ObjectMapper().writeValueAsString(listcart);
-        System.out.println(s);
-
+    @RequestMapping("/checkout")
+    public String checkout(Model model,HttpSession session) throws JsonProcessingException{
+        User us=(User)session.getAttribute("USER");
+        List<cartItemInfo> l=addtocartdao.getListcartitem(us.getUserId());
+        model.addAttribute("cartItems",l);
+        System.out.println(new ObjectMapper().writeValueAsString(l));
         return "checkout2";
     }
-    @RequestMapping("/test")
-    public String test() throws JsonProcessingException{
-        
-//        List<ProductInfo> list=productdao.getListProduct();
-//        String s=new ObjectMapper().writeValueAsString(list);
-//        System.out.println(s);
-//        ToppingProductInfo list=ToppingProductdao.getList(2);
-//        
-//        String s=new ObjectMapper().writeValueAsString(list);
-//        System.out.println(s);
-        return "checkout";
+    @RequestMapping("/addtocart")
+    @ResponseBody
+    public String addtocart(HttpServletRequest request){
+        String idProduct=request.getParameter("idProduct");
+        String idcart=request.getParameter("idcart");
+        String quantity=request.getParameter("quantity");
+        String size=request.getParameter("size");
+        String topping=request.getParameter("topping");
+        String mucduong=request.getParameter("mucduong");
+        System.out.println(idProduct+" "+idcart+" "+quantity+" "+size+" "+topping+" "+mucduong);
+        addtocartdao.add(idProduct, idcart, quantity, size, topping, mucduong);
+        return "";
     }
-}
+    
+    //when user login
+    @RequestMapping("/login")
+    @ResponseBody
+    public String login(HttpServletRequest request,HttpSession session) throws JsonProcessingException{
+        User user=new User(         request.getParameter("userID"),
+                                    request.getParameter("name"),
+                                    request.getParameter("email"),
+                                    request.getParameter("picture"),
+                                    request.getParameter("accessToken"));
+        
+        //String s=new ObjectMapper().writeValueAsString(user);
+        CartInfo cart=userdao.checkContain(user);  
+        session.setAttribute("USER", user);
+        return new ObjectMapper().writeValueAsString(cart);
+    }
+    // when user loginted get cart
+    @RequestMapping("/getCart")
+    @ResponseBody
+    public String getCart(HttpSession session) throws JsonProcessingException{
+        CartInfo cart=userdao.checkContain((User) session.getAttribute("USER"));
+        return new ObjectMapper().writeValueAsString(cart);
+    }
+    
+}   
+    

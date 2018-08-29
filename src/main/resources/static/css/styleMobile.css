@@ -8,13 +8,20 @@ and open the template in the editor.
     Author     : vudung
 */
 
-.navbar{
+.navbar1{
     background-color: #63b175 ;
     font-family: raleway !important;
     
 }
 .navbar-brand{
     color: white !important;
+}
+.navbar-nav{
+    padding-top: 7.5px;
+    
+    padding-bottom: 7.5px;
+    
+    margin: 0;
 }
 .a:link{
     color:white;
@@ -23,10 +30,17 @@ and open the template in the editor.
     color:white;
 }
 .navbar-fixed-top {
-    top: auto;
+    position: -webkit-sticky;
+    position: sticky;
+    top: -2px;
+    border: none !important;
+}
+/*.navbar-fixed-top {
     position: fixed;
     
-}
+    top: 0;
+    border: none !important;
+}*/
 
 nav>.active>a{
     background-color:#546076 !important;
@@ -46,40 +60,52 @@ nav>.active>a{
   
 
 /*Footer*/
-.social-icon {
+#login {
   list-style: none;
   padding: 0;
   margin: 0;
+  position: absolute;
+  right: -50px; 
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+}
+.social-icon{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width:50%;
+}
+#hi{
+    vertical-align: middle;
+    position: absolute;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    right: -50px; 
+    font-size: 14px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color:#f2dede;
 }
 
-.social-icon li{
+.social-icon li button text{
   display: inline-block;
   text-align: center;
+  font-size: 13px;
+  vertical-align: middle !important;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.social-icon a {
-  display: block;
-  width: 44px;
-  height: 44px;
-  line-height: 44px;
-  border-radius: 50%;
-  margin-right: 5px;
-}
-
-.social-icon a {
-  background: rgba(255, 255, 255, 0.85); /* social icon background color */
-  color: #000; /* social icon color */
-}
-
-.social-icon a:hover {
-  background: rgba(255, 255, 255, 0.25); /* social icon hover background color */
-  color: #fff; /* social icon hover color */
+.social-icon i {
+  font-size: 25px;
 }
 
 .footer {
   position: fixed;
   opacity: 0.7;
-  bottom: 0;
+  bottom: 0%;
+  left: 0;
   padding-top: 5px;
   width: 100%;
   height: 60px;
@@ -88,17 +114,17 @@ nav>.active>a{
 
 
 .modal-content {
-        background-color: #fefefe;
-        position: fixed;
-        left: 50%; 
-        top: 50%;
-        transform: translateX(-50%) translateY(-50%);
-        -webkit-transform: translateX(-50%) translateY(-50%);
-        border: 1px solid #888;
-        width: 100%; /* Could be more or less, depending on screen size */
-        height:auto;
-        z-index:100000;
-        cursor: pointer;
+    background-color: #fefefe;
+    position: fixed;
+    left: 50%; 
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    border: 1px solid #888;
+    width: 100%; /* Could be more or less, depending on screen size */
+    height:auto;
+    z-index:100000;
+    cursor: pointer;
 }
 
 /* The customcheck */
@@ -169,6 +195,14 @@ nav>.active>a{
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
-@keyframes scroll {
+/*@keyframes scroll {
     100% {position:fixed; top:0px;}
+}*/
+
+#signin{
+    position: fixed;
+    top:5px;
+    right: 5px;
+    color: white;
+    font-weight: bold;
 }

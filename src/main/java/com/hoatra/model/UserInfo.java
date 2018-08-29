@@ -11,16 +11,34 @@ package com.hoatra.model;
  */
 public class UserInfo {
     private int UserId;
-    private String username;
-
-    public UserInfo(int UserId, String username) {
-        this.UserId = UserId;
-        this.username = username;
-    }
+    private String idface;
+    private String name;
+    private String email;
+    private String picture;
+    private String accessToken;
 
     public UserInfo() {
     }
 
+    public UserInfo(int UserId, String idface, String name, String email, String picture, String accessToken) {
+        this.UserId = UserId;
+        this.idface = idface;
+        this.name = name;
+        this.email = email;
+        this.picture = picture;
+        this.accessToken = accessToken;
+    }
+
+    public UserInfo(String idface, String name, String email, String picture, String accessToken) {
+        this.idface = idface;
+        this.name = name;
+        this.email = email;
+        this.picture = picture;
+        this.accessToken = accessToken;
+    }
+    
+    
+    
     public int getUserId() {
         return UserId;
     }
@@ -29,12 +47,45 @@ public class UserInfo {
         this.UserId = UserId;
     }
 
-    public String getUsername() {
-        return username;
+    public String getIdface() {
+        return idface;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setIdface(String idface) {
+        this.idface = idface;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+    public String getAccessToken() {
+        return accessToken;
+    }
+
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
+    }
+    
     
 }

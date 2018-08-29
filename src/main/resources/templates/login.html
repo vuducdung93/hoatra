@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+        <style>
+            #container {
+
+                position: fixed;
+                left: 50%; 
+                top: 50%;
+                transform: translateX(-50%) translateY(-50%);
+                -webkit-transform: translateX(-50%) translateY(-50%);
+                
+                width: 100%; /* Could be more or less, depending on screen size */
+                height:auto;
+                
+                cursor: pointer;
+            }
+            button{
+                background-color: blue;
+                width:85% !important;
+                height: 50px;
+                border-radius: 20px 20px 20px 20px !important;
+                font-size: 20px !important;
+                font-weight: bold !important;
+                
+            }
+            i{
+                
+                font-size: 25px !important;
+            }
+            h1{
+                position: fixed;
+                top:20%;
+                left: 50%;
+                transform: translateX(-50%) translateY(-50%);
+                color: #abd6ab;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body style="width: 100%; background: url(../images/banner2.jpg)no-repeat center;background-attachment: fixed;text-align: center;position: relative;vertical-align: baseline;">
+        <h1>Sign in</h1>
+        <div  id="container">
+            
+            <button  class="btn btn-primary">
+                <i  class="fa fa-facebook-official"></i>
+                Login with
+            </button>
+            </br></br>
+            <!--<button  class="btn btn-danger">
+                <i  class="fa fa-google-plus-square"></i>
+                Google
+            </button>-->
+
+        </div>
+    </body>
+</html>

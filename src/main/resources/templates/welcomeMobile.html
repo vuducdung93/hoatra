@@ -14,7 +14,7 @@
             body {
                 position: relative; 
             }
-            #section1 {padding-top: 50px;color: black; background-color: #ffffff;}
+            #section1 {color: black; background-color: #ffffff;}
             #section2 {color: black; background-color: #ffffff;}
             #section3 {color: black; background-color: #ffffff;}
             #section4 {padding-bottom: 100px;color: black; background-color: #ffffff;}
@@ -23,12 +23,16 @@
     </head>
     
 
-    <body onscroll="abc()"  data-spy="scroll" data-target=".navbar" data-offset="80">
+    <body  data-spy="scroll" data-target=".navbar1" data-offset="60">
+        <!-- Session -->
+        <input hidden id="user" type="text" th:value="${session.USER}">
+        <!-- Session -->
         
-            <img id="test" class="navbar-header" src="/images/banner.jpg" style="width:100%;"/>
+        <img id="test" class="navbar-header" src="/images/banner.jpg" style=" width:100%;"/>
                     
         
-        <nav class="navbar navbar-inverse navbar-fixed-top">
+        <nav class="navbar1 navbar-inverse navbar-fixed-top">
+            
             <div class="container-fluid">
                 
                 
@@ -48,84 +52,166 @@
         </div>   
             
         
-        <div class="container-fluid" style="height: 300px;">
+        <div class="container-fluid" style="height: 350px;">
             
         </div>
         <!-- layout chon option tung mon hang-->
-        <div id="overlay">
         
-        
-        </div>
         <!-- end layout chon option tung mon hang-->
         
         <!-- form checkout -->
-        <form method="POST" action="/checkout">
-                <input id="eobiet" type="text" value="" hidden name="itemcartArr"/> 
-                <input id="submit" type="submit" hidden>
-        </form>
+        
         <!-- end form checkout -->
         <footer class="footer">
             <div class="container">
                 <ul class="social-icon animate pull-right">
-                    <li><a href="#" title="facebook" target="_blank"><i class="fa fa-facebook"></i></a></li> <!-- change the link to social page and edit title-->
-                    <li><a href="#" title="twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#" title="google plus" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+                    <li id="login">
+                        <button class="btn btn-primary"><text>Login with <text>
+                        <i class="fa fa-facebook-official"></i>  
+                         </button>
+                    </li>
+                    <li id="hi">
+                        wellcome,<span th:text="${session.USER.name}" th:unless="${session.USER == null}"></span>
+                    </li>
                 </ul>
-                <div id="cart"><img style="height:50px;width: 50px;" src="/images/shopping.png"/><span id="slCart" style="background-color: blue;" class="badge">0</span></div>
+                <div onclick="window.location='/checkout';" id="cart" style="width:80px"><img style="height:50px;width: 50px;" src="/images/shopping.png"/><span id="slCart" style="background-color: blue;" class="badge">0</span></div>
             </div>
         </footer>
-            
+        <div id="overlay">
+        
+        
+        </div>    
         
         <script type="text/javascript" src="js/jquery/jquery.js"></script>
         
         <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+              appId            : '480433499099624',
+              autoLogAppEvents : true,
+              xfbml            : true,
+              version          : 'v3.1'
+            });
+          };
+
+          (function(d, s, id){
+             var js, fjs = d.getElementsByTagName(s)[0];
+             if (d.getElementById(id)) {return;}
+             js = d.createElement(s); js.id = id;
+             js.src = "https://connect.facebook.net/en_US/sdk.js";
+             fjs.parentNode.insertBefore(js, fjs);
+           }(document, 'script', 'facebook-jssdk'));
+           var person= {userID:"",name: "",accessToken: "", picture: "",email: "" };
+           function loginface(){
+               FB.login(function (response){
+                    if(response.status=="connected"){
+                        person.accessToken=response.authResponse.accessToken;
+                        person.userID=response.authResponse.userID;
+                        FB.api('/me?fields=id,name,first_name,last_name,email,picture.type(large)',function (userData){
+                            person.name = userData.name;
+                            person.email = userData.email;
+                            person.picture = userData.picture.data.url;
+                            
+                            $.ajax({
+                                url: "/login",
+                                method: "POST",
+                                data: person,
+                                dataType: 'text',
+                                success: function(res){
+                                    var data=jQuery.parseJSON(res);
+                                    idcart=data.id;
+                                    login=true;
+                                    $('#login').css('display','none');
+                                    document.getElementById("hi").innerHTML=`wellcome,`+data.name;
+                                    $('#hi').css('display','block');
+                                    document.getElementById("slCart").innerHTML =data.count;
+                                }
+                            });
+                        });
+                    }
+                },{scope: 'public_profile, email'});
+           }
+               
             
+            var user = $('#user').val();
+            var login;
+            var idcart;
+            if(user == ''){// when not login
+                $('#login').css('display','block');
+                $('#hi').css('display','none');
+                login=false;
+            }else{  // when logined
+                $('#login').css('display','none');
+                $('#hi').css('display','block');
+                $.ajax({
+                    type: 'GET',
+                    url: '/getCart',
+                    success: function (res) {
+                        var data=jQuery.parseJSON(res);
+                        console.log(data);
+                                login=true;
+                                idcart=data.id;
+                                $('#login').css('display','none');
+                                document.getElementById("hi").innerHTML=`wellcome,`+data.name;
+                                $('#hi').css('display','block');
+                                document.getElementById("slCart").innerHTML =data.count;
+                    }
+                });
+            }
+            $('#login').click(function(){
+                loginface();
+            });
             
             var itemProduct;
-            
             var listLevelSugar;
-            var itemcartArr=new Array();
-            
-            $("#cart").on("click", function() {
-                $('#eobiet').val(JSON.stringify(itemcartArr));
-                $('#submit').click();
-                /*$.post("/postcheckout",
-                {
-                    itemcartArr:JSON.stringify(itemcartArr)
-                });*/
-                
-            });
             
             //chinh lai phan thanh dieu huong
             var offset = 50;
-            
-            function dieuhuong(a){
-                event.preventDefault();
-                $($(a).attr('href'))[0].scrollIntoView();
-                scrollBy(0, -offset);
+            function dieuhuong(a){         
+                $('.navbar1').click(function (e) {
+                    e.preventDefault();
+                    $($(a).attr('href'))[0].scrollIntoView();
+                    scrollBy(0, -offset);                
+                    $(a).parent().addClass('active');
+                    $(a).parent().siblings().removeClass('active');
+                });
+                
             };
-            console.log("ok4");
             //end chinh lai phan thanh dieu huong
             function addtocart() {
-                var mucduong=$('input[name=mucduong]:checked').siblings('p').text();
-                
-                var topping=new Array();
-                $('input[name="topping"]:checked').each(function() {
-                    topping.push($(this).siblings('p').text());
-                });
-                var size=$('input[name=size]:checked').siblings('p').text();
-                var quantity=$('#quantity').text();
-                var idProduct=itemProduct.id;
-                var itemcart = {
-                    idProduct:idProduct,
-                    quantity:quantity,
-                    size:size,
-                    topping:topping,
-                    mucduong:mucduong
-                };
-                itemcartArr.push(itemcart);
-                document.getElementById("slCart").innerHTML = itemcartArr.length;
-                document.getElementById("overlay").style.display = "none";
+                if(login==true){
+                    var mucduong=$('input[name=mucduong]:checked').siblings('p').text();
+
+                    var topping=new Array();
+                    $('input[name="topping"]:checked').each(function() {
+                        topping.push($(this).siblings('p').text());
+                    });
+                    var size=$('input[name=size]:checked').siblings('p').text();
+                    var quantity=$('#quantity').text();
+                    var idProduct=itemProduct.productId;
+                    var itemcart = {
+                        idProduct:idProduct,
+                        idcart:idcart,
+                        quantity:quantity,
+                        size:size,
+                        topping:topping.toString(),
+                        mucduong:mucduong
+                    };
+                    document.getElementById("slCart").innerHTML = Number($('#slCart').text())+1;
+                    document.getElementById("overlay").style.display = "none";
+
+                    $.ajax({
+                        url: "/addtocart",
+                        method: "POST",
+                        data: itemcart,
+                        dataType: 'text',
+                        success: function(){
+                            console.log('ok');
+                        }
+                    });
+                }else{
+                   loginface(); 
+                }
             };
             $(window).load(function () {
                 $.ajax({
@@ -166,8 +252,8 @@
                             }
                         });
                         $('#categories').replaceWith(function() {
-                                    return $('.container-fluid', this);
-                                });
+                            return $('.container-fluid', this);
+                        });
                     }
                         
                         
@@ -184,9 +270,10 @@
                 });
             });
             
-            var height=$(window).height();
+            
             
             $(document).on('click', '.btnCart', function () {
+                
                 var id=$(this).children("input").val();
                 console.log(id);
                 $.ajax({
@@ -196,7 +283,7 @@
                         var data=jQuery.parseJSON(dt);
                         itemProduct=data;
                         var toppings=data.toppings;
-                        console.log(toppings);
+                        console.log(data);
                         var html=`<div class="modal-content">
                                     
                                     <div class="col-md-12 col-xs-12 col-sm-12" style=" background-color: whitesmoke;margin-top: 8px;">
@@ -294,6 +381,7 @@
                 
                 
                 document.getElementById("overlay").style.display = "block";
+                
             });
             $(document).on('click', '#close', function () {
                 document.getElementById("overlay").style.display = "none";
@@ -319,39 +407,22 @@
                var money1product=(moneysize+moneytopping+Number(itemProduct.price))*Number($('#quantity').text());
                document.getElementById("tongtien").innerHTML = money1product.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+'đ';
            }
-           var height=$('#test').innerHeight();
-           function abc(){
-               
-               //var heightall=$('#test').innerHeight();
+           
+           //var height=$('#test').innerHeight();
+           
+          /* function abc(){
                if(($(this).scrollTop())>= height) {
-                    //$('.navbar-fixed-top').css('position','fixed');
-                    
+                    $('.navbar-fixed-top').css('position','fixed');
                     $('.navbar-fixed-top').css('top','0');
-                    //$('.navbar-fixed-top').css('animation-name','scroll');
-                    //$('.navbar-fixed-top').css('animation-duration','1s');
                     
-                }else{
-                    //$('.navbar-fixed-top').css('position','fixed');
-                    $('.navbar-fixed-top').css('top',height-$(this).scrollTop());
+                }else if(height-$(this).scrollTop()>=0){
+                    $('.navbar-fixed-top').css('position','absolute');
+                    $('.navbar-fixed-top').css('top','auto');
                     
-                    //$('.footer').css('position','fixed');
-                    //$('.footer').css('bottom','0');
-                }
-                //console.log($(this).scrollTop() + '  '+$('#test').innerHeight()+ '  '+$(this).innerHeight());
-                
-           }
-           /*jQuery(function($) {
-                $('body').on('scroll', function() {
-                    if($(this).scrollTop() + $('#test').innerHeight() >= $('#test')[0].scrollHeight) {
-                        alert('end reached');
-                    }
-                })
-                });*/
- 
-            
-            
-            
-            
+                }  
+           }*/
+           
+   
         </script>
 
     </body>

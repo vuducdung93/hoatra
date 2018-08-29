@@ -137,8 +137,8 @@
 
                                 <div class="row">
                                     <div class="col-50">
-                                        <label for="state">State</label>
-                                        <input type="text" id="state" name="state" placeholder="NY">
+                                        <label for="state">Notes</label>
+                                        <input type="text" id="state" name="state" placeholder="Hiện tại nút checkout méo nhấn được nhé...">
                                     </div>
                                     
                                 </div>
@@ -167,23 +167,37 @@
                             <label class="product-removal">Remove</label>
                             
                         </div>
-                        <div th:each="cart : ${listcart}">
+                        
+                        <div th:each="cart : ${cartItems}">
+                            
                             <div style="border-bottom: 2px solid black;" class="product">
                                 <div class="product-image">
-                                    <img th:src="${'/images/'+cart.product.image}">
+                                    <img th:src="${'/images/'+cart.imagesP}">
                                 </div>
                                 <div class="product-details">
-                                    <div class="product-title" th:text="${cart.product.name}"></div>
-                                    <div th:each="topping : ${cart.listTopping}">
-                                        <p class="product-description" th:text="'- '+${topping.name}"></p>
+                                    <div class="product-title" th:text="${cart.nameP}"></div>
+                                    <div th:switch="${cart.size}">
+                                        <p class="product-description" th:case="true">- Size lớn</p>
+                                        <p class="product-description" th:case="false">- Size nhỏ</p>
                                     </div>
-                                    <p class="product-description" th:text="'- '+${cart.sugar.name}"></p>
+                                    
+                                    <div th:each="topping : ${cart.list}">
+                                        <p class="product-description" th:text="'- '+${topping.name}"></p>
+                                        
+                                    </div>
+                                    <div th:switch="${cart.mucduong}">
+                                        <p class="product-description" th:case="1">- 100% đường</p>
+                                        <p class="product-description" th:case="2">- 70% đường</p>
+                                        <p class="product-description" th:case="3">- 30% đường</p>
+                                        <p class="product-description" th:case="4">- 0% đường</p>
+                                    </div>
+                                   
                                 </div>
-                                <div class="product-price" th:text="${cart.pricecart +'d'}"></div>
+                                <div class="product-price" th:text="${#numbers.formatDecimal(cart.total ,0, 'COMMA', 0, 'POINT')+ ' đ'}"></div>
                                 <div class="product-quantity">
                                     <input type="number" th:value="${cart.quantity}" min="1">
                                 </div>
-                                <div class="product-line-price" th:text="${#numbers.formatDecimal(cart.pricecart*cart.quantity, 0, 'COMMA', 0, 'POINT')}+'đ'"></div>
+                                <div class="product-line-price" th:text="${#numbers.formatDecimal(cart.priceP*cart.quantity, 0, 'COMMA', 0, 'POINT')}+' đ'"></div>
                                    
                                 <div class="product-removal">
                                         <button class="remove-product">
@@ -226,6 +240,7 @@
         <script>
             $(window).load(function () {
                 updateQuantity($('.product-quantity input'));
+                
             });
         </script>        
     </body>

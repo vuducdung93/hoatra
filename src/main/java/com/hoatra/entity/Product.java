@@ -46,24 +46,21 @@ public class Product implements Serializable{
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
     List<ToppingProduct> ToppingProducts;
 
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+    List<CartItem> cartItems;
     public Product() {
     }
 
-    public Product(int id, String name, int price, String images, Categories categories, List<ToppingProduct> ToppingProducts) {
-        this.id = id;
+    public Product(String name, int price, String images, Categories categories, List<ToppingProduct> ToppingProducts, List<CartItem> cartItems) {
         this.name = name;
         this.price = price;
         this.images = images;
         this.categories = categories;
         this.ToppingProducts = ToppingProducts;
+        this.cartItems = cartItems;
     }
 
     
-
-    
-
-    
-
     public int getId() {
         return id;
     }
@@ -112,6 +109,15 @@ public class Product implements Serializable{
         this.categories = categories;
     }
 
+    public List<CartItem> getCartItems() {
+        return cartItems;
+    }
+
+    public void setCartItems(List<CartItem> cartItems) {
+        this.cartItems = cartItems;
+    }
+
+    
     
     
 }

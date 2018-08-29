@@ -63,8 +63,7 @@
                 </dependency>
                 
                 
-                <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-                <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+                <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java 5.1.38-->
                 <dependency>
                     <groupId>mysql</groupId>
                     <artifactId>mysql-connector-java</artifactId>
