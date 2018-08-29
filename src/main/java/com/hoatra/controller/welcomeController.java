@@ -156,6 +156,7 @@ public class welcomeController {
                                     request.getParameter("accessToken"));
         
         //String s=new ObjectMapper().writeValueAsString(user);
+        System.out.println(new ObjectMapper().writeValueAsString(user));
         CartInfo cart=userdao.checkContain(user);  
         session.setAttribute("USER", user);
         return new ObjectMapper().writeValueAsString(cart);
