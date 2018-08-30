@@ -221,8 +221,8 @@
                             var ListCategories=jQuery.parseJSON(data);
                             ListCategories.forEach(function myfunction(item) {
                                 var html1=`<li style="text-align: center;width:25%; float:left;"><a onclick="dieuhuong(this)" href="#section`+item.id+`">`+item.name+`</a></li>`;
-                                var html2=`<div id="section`+item.id+`" class="container-fluid">
-                                            <h3>`+item.name+`</h3>
+                                var html2=`<div id="section`+item.id+`" class="container-fluid"></br>
+                                            <div style="font-size:15px;font-weight:bold;padding:10px;text-transform:uppercase;background-color: whitesmoke; width:100%;">`+item.name+`</div>
                                             <table id="tasection`+item.id+`" style="width:100%">
 
                                             </table>
@@ -244,7 +244,7 @@
 
                                                     `</td>
                                                     <td style="width:60%;"><button class="btnCart btn btn-info" style="border-radius:15px;font-size:20px; font-weight:bold;" type="button">+<input type="hidden" value=`+item.id+`></button></td>
-                                                </tr>`;
+                                                </tr></br>`;
                                     
                                     document.getElementById("tasection"+item.cId).innerHTML += html;
                                     

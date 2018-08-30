@@ -9,8 +9,13 @@ and open the template in the editor.
 */
 
 .navbar1{
-    background-color: #63b175 ;
+    
     font-family: raleway !important;
+    
+    
+}
+.navbar-inverse{
+    background-color: whitesmoke;
     
 }
 .navbar-brand{
@@ -27,13 +32,15 @@ and open the template in the editor.
     color:white;
 }
 #myNavbar> ul>li>a{
-    color:white;
+    color:black;
+    font-size: 13px;
+    text-transform:uppercase;
 }
 .navbar-fixed-top {
     position: -webkit-sticky;
     position: sticky;
     top: -2px;
-    border: none !important;
+    
 }
 /*.navbar-fixed-top {
     position: fixed;
@@ -44,12 +51,16 @@ and open the template in the editor.
 
 nav>.active>a{
     background-color:#546076 !important;
+    
 }
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover,
 .navbar-inverse .navbar-nav > .active > a:focus {
-  
-  background-color: #525e74 ;
+  color:red !important;
+  font-weight: bold;
+  font-size: 12.5px !important;
+  background-color: whitesmoke;
+  padding: 2px;
 }
 .container-fluid {
     padding-right: 2px;
