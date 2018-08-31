@@ -11,17 +11,28 @@ package com.hoatra.model;
  */
 public class CartInfo {
     private int id;
+    private String fullname;
+    private String phone;
+     private String address;
     private String notes;
     private String name; 
     private long count;
 
-    public CartInfo(int id, String notes,String name,long count) {
+    public CartInfo(int id, String fullname, String phone, String address, String notes) {
         this.id = id;
+        this.fullname = fullname;
+        this.phone = phone;
+        this.address = address;
         this.notes = notes;
-        this.name=name;
-        this.count=count;
     }
 
+    public CartInfo(int id, String notes, String name, long count) {
+        this.id = id;
+        this.notes = notes;
+        this.name = name;
+        this.count = count;
+    }
+    
     public CartInfo() {
     }
 
@@ -33,6 +44,30 @@ public class CartInfo {
         this.id = id;
     }
 
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+    
     public String getNotes() {
         return notes;
     }

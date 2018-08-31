@@ -5,13 +5,14 @@
  */
 package com.hoatra.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  *
  * @author vudung
  */
-public class cartItemInfo {
+public class cartItemInfo implements Serializable{
     private int id;
     private int quantity;
     private boolean size;
@@ -38,6 +39,24 @@ public class cartItemInfo {
         this.imagesP = imagesP;
         
     }
+
+    public cartItemInfo(int id, int quantity, boolean size, int mucduong, String listTopping, int idP, String nameP, int priceP, String imagesP, List<ToppingInfo> list, int total) {
+        this.id = id;
+        this.quantity = quantity;
+        this.size = size;
+        this.mucduong = mucduong;
+        this.listTopping = listTopping;
+        this.idP = idP;
+        this.nameP = nameP;
+        this.priceP = priceP;
+        this.imagesP = imagesP;
+        this.list = list;
+        this.total = total;
+    }
+
+    public cartItemInfo() {
+    }
+    
     
 
     public int getId() {

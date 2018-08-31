@@ -29,6 +29,15 @@ public class Cart {
     @Column(name = "id")
     private int id;
     
+    @Column(name = "fullname")
+    private String fullname;
+    
+    @Column(name = "phone")
+    private String phone;
+    
+    @Column(name = "address")
+    private String address;
+    
     @Column(name = "notes")
     private String notes;
     
@@ -39,12 +48,15 @@ public class Cart {
     @OneToMany(mappedBy = "cart", fetch = FetchType.LAZY)
     List<CartItem> cartItems;
 
-    public Cart(String notes, User user, List<CartItem> cartItems) {
+    public Cart(int id, String fullname, String phone, String address, String notes, User user, List<CartItem> cartItems) {
+        this.id = id;
+        this.fullname = fullname;
+        this.phone = phone;
+        this.address = address;
         this.notes = notes;
         this.user = user;
         this.cartItems = cartItems;
     }
-
     public Cart() {
     }
 
@@ -56,6 +68,30 @@ public class Cart {
         this.id = id;
     }
 
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+    
     public String getNotes() {
         return notes;
     }

@@ -12,6 +12,7 @@ import com.hoatra.DAO.ToppingProductDAO;
 import com.hoatra.DAO.addtocart;
 import com.hoatra.DAO.categoriesDAO;
 import com.hoatra.DAO.productDAO;
+import com.hoatra.DAO.sendMail;
 import com.hoatra.bean.Product;
 import com.hoatra.bean.Topping;
 import com.hoatra.bean.cartItem;
@@ -19,6 +20,7 @@ import com.hoatra.bean.itemProduct;
 import com.hoatra.bean.levelSugar;
 import com.hoatra.DAO.userDAO;
 import com.hoatra.entity.Cart;
+import com.hoatra.entity.Order;
 import com.hoatra.entity.User;
 import com.hoatra.model.CartInfo;
 import com.hoatra.model.CategoriesInfo;
@@ -33,6 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +56,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class welcomeController {
     @Autowired(required=true)
     private userDAO userdao;
+    
+    @Autowired(required=true)
+    private sendMail mail;
     
     @Autowired(required=true)
     private categoriesDAO categoriesdao;
@@ -111,11 +117,7 @@ public class welcomeController {
         String s=new ObjectMapper().writeValueAsString(ToppingProductdao.getList(id));
         
         return s;
-    }
-    
-    
-    
-    
+    }     
     @RequestMapping("/ListLevelSugar")
     @ResponseBody
     public String getListLevelSugar() throws JsonProcessingException{
@@ -124,14 +126,31 @@ public class welcomeController {
     }
     
     @RequestMapping("/checkout")
-    public String checkout(Model model,HttpSession session) throws JsonProcessingException{
+    public String checkout(Model model,HttpSession session){
         User us=(User)session.getAttribute("USER");
-        List<cartItemInfo> l=addtocartdao.getListcartitem(us.getUserId());
-        model.addAttribute("cartItems",l);
-        System.out.println(new ObjectMapper().writeValueAsString(l));
+        model.addAttribute("cartItems",addtocartdao.getListcartitem(us.getUserId()));
+        model.addAttribute("cart",userdao.getCart(us.getUserId()));
         return "checkout2";
     }
-    @RequestMapping("/addtocart")
+    
+    @RequestMapping(value="/order", method=RequestMethod.POST)//when user Order
+    @ResponseBody
+    public String order(HttpSession session,HttpServletRequest request) throws IOException, MessagingException{
+        User u=(User)session.getAttribute("USER");
+        
+        int id=Integer.parseInt(request.getParameter("id"));
+        String fullname=request.getParameter("fullname");
+        String phone=request.getParameter("phone");
+        String address=request.getParameter("address");
+        String notes=request.getParameter("notes");
+        System.out.println(id);
+        Cart c=userdao.updateCart(id, fullname, phone, address, notes);
+        Order or=addtocartdao.order(u.getUserId(), u.getName());
+        mail.sendHTML(or,c);
+        return "";
+    }
+    
+    @RequestMapping(value="/addtocart", method=RequestMethod.POST)//add item to cart
     @ResponseBody
     public String addtocart(HttpServletRequest request){
         String idProduct=request.getParameter("idProduct");
@@ -143,6 +162,22 @@ public class welcomeController {
         System.out.println(idProduct+" "+idcart+" "+quantity+" "+size+" "+topping+" "+mucduong);
         addtocartdao.add(idProduct, idcart, quantity, size, topping, mucduong);
         return "";
+    }
+    
+    @RequestMapping(value="/removeitem", method=RequestMethod.POST)// remove item cart
+    @ResponseBody
+    public String removeitem(HttpServletRequest request){
+        int id=Integer.parseInt(request.getParameter("itemId").trim());
+        boolean a=addtocartdao.removeItem(id);
+        return a+"";
+    }
+    @RequestMapping(value="/updateItem", method=RequestMethod.POST)// remove item cart
+    @ResponseBody
+    public String updateItem(HttpServletRequest request){
+        int id=Integer.parseInt(request.getParameter("itemId").trim());
+        int value=Integer.parseInt(request.getParameter("value"));
+        boolean a=addtocartdao.removeItem(id);
+        return a+"";
     }
     
     //when user login

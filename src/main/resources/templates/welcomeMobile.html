@@ -5,7 +5,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
         <link rel="stylesheet" th:href="@{/css/styleMobile.css}" href="../../css/styleMobile.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -46,7 +46,7 @@
                 </div>
             </div>
         </nav>
-            
+        <img id="loadding"   src="/images/loading.gif" style=" width:100%;"/>    
         <div id="categories">
             <!-- locate of categories -->
         </div>   
@@ -74,7 +74,7 @@
                         wellcome,<span th:text="${session.USER.name}" th:unless="${session.USER == null}"></span>
                     </li>
                 </ul>
-                <div onclick="window.location='/checkout';" id="cart" style="width:80px"><img style="height:50px;width: 50px;" src="/images/shopping.png"/><span id="slCart" style="background-color: blue;" class="badge">0</span></div>
+                <div onclick="window.location='/checkout';" id="cart" style="width:80px"><i style="margin-top:5px; font-size: 40px;color: red;" class="fas fa-shopping-cart"></i><span id="slCart" style="background-color: blue;" class="badge">0</span></div>
             </div>
         </footer>
         <div id="overlay">
@@ -85,6 +85,7 @@
         <script type="text/javascript" src="js/jquery/jquery.js"></script>
         
         <script>
+        $('#categories').css('display','none');  //wait load content  
         window.fbAsyncInit = function() {
             FB.init({
               appId            : '480433499099624',
@@ -148,7 +149,7 @@
                     url: '/getCart',
                     success: function (res) {
                         var data=jQuery.parseJSON(res);
-                        console.log(data);
+                        
                                 login=true;
                                 idcart=data.id;
                                 $('#login').css('display','none');
@@ -243,7 +244,7 @@
                                                         <h4>`+item.name+`</h4>`+item.price+
 
                                                     `</td>
-                                                    <td style="width:60%;"><button class="btnCart btn btn-info" style="border-radius:15px;font-size:20px; font-weight:bold;" type="button">+<input type="hidden" value=`+item.id+`></button></td>
+                                                    <td style="width:60%;"><button class="btnCart btn btn-info btn-circle" ><i class="fa fa-plus" aria-hidden="true"></i><input type="hidden" value=`+item.id+`></button></td>
                                                 </tr></br>`;
                                     
                                     document.getElementById("tasection"+item.cId).innerHTML += html;
@@ -251,9 +252,12 @@
                                 });
                             }
                         });
-                        $('#categories').replaceWith(function() {
+                        /*$('#categories').replaceWith(function() {
                             return $('.container-fluid', this);
-                        });
+                        });*/
+                        $('#loadding').css('display','none');
+                        $('#categories').css('display','block');
+                        
                     }
                         
                         
@@ -408,19 +412,6 @@
                document.getElementById("tongtien").innerHTML = money1product.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+'đ';
            }
            
-           //var height=$('#test').innerHeight();
-           
-          /* function abc(){
-               if(($(this).scrollTop())>= height) {
-                    $('.navbar-fixed-top').css('position','fixed');
-                    $('.navbar-fixed-top').css('top','0');
-                    
-                }else if(height-$(this).scrollTop()>=0){
-                    $('.navbar-fixed-top').css('position','absolute');
-                    $('.navbar-fixed-top').css('top','auto');
-                    
-                }  
-           }*/
            
    
         </script>

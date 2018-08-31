@@ -37,14 +37,18 @@ public class userDAO {
         Session session = this.sessionFactory.openSession();
         try {
             session.getTransaction().begin();
-            session.saveOrUpdate(user);
-            session.flush();
+            User u= session.get(User.class, user.getUserId());
+            if(u==null){
+                session.save(user);
+                session.flush();
+            }
+
             String sql="select new "+CartInfo.class.getName()+"(c.id,c.notes,c.user.name,(select count(*) from c.cartItems)) from "+Cart.class.getName()+" c where c.user.UserId='"+user.getUserId()+"'";
             List<CartInfo> carts=session.createQuery(sql,CartInfo.class).getResultList();
             if(carts.size()==0){
                 Cart cart=new Cart();
                 cart.setUser(user);
-                session.saveOrUpdate(cart);
+                session.save(cart);
                 session.flush();
                 session.getTransaction().commit();
                 return new CartInfo(cart.getId(),"",user.getName(),0);
@@ -53,7 +57,41 @@ public class userDAO {
                 return carts.get(0);
             }        
         } catch (Exception ex) {
-            System.out.println(ex);
+            session.getTransaction().rollback();
+        } finally {
+            session.close();
+        }
+        return null;
+    }
+    public CartInfo getCart(String id){
+        Session session = this.sessionFactory.openSession();
+        try {
+            session.getTransaction().begin();
+            String sql="select new "+CartInfo.class.getName()+"(c.id,c.fullname,c.phone,c.address,c.notes) from "+Cart.class.getName()+" c where c.user.UserId='"+id+"'";
+            List<CartInfo> carts=session.createQuery(sql,CartInfo.class).getResultList();
+            session.getTransaction().commit();
+            return carts.get(0);
+        } catch (Exception ex) {
+            session.getTransaction().rollback();
+        } finally {
+            session.close();
+        }
+        return null;
+    }
+    public Cart updateCart(int id,String fullname,String phone,String address,String notes){
+        Session session = this.sessionFactory.openSession();
+        try {
+            session.getTransaction().begin();
+            Cart c=session.get(Cart.class, id);
+            c.setFullname(fullname);
+            c.setAddress(address);
+            c.setNotes(notes);
+            c.setPhone(phone);
+            session.update(c);
+            session.flush();
+            session.getTransaction().commit();
+            return c;
+        } catch (Exception ex) {
             session.getTransaction().rollback();
         } finally {
             session.close();

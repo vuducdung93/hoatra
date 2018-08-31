@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" th:href="@{/css/checkout.css}" href="../../css/checkout.css" />
+        
         <style>
             body {
                 font-family: Arial;
@@ -53,6 +54,13 @@
             }
 
             input[type=text] {
+                width: 100%;
+                margin-bottom: 20px;
+                padding: 12px;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+            }
+            #phone{
                 width: 100%;
                 margin-bottom: 20px;
                 padding: 12px;
@@ -117,28 +125,24 @@
         <div class="row">
             <div class="col-75">
                 <div class="container">
-                    <form action="">
-
                         <div class="row">
                             <div class="col-50">
                                 <h3>Billing Address</h3>
                                 <label for="fname"><i class="fa fa-user"></i> Full Name</label>
-                                <input type="text" id="fname" name="firstname" placeholder="Hoa Trà">
+                                <input type="text" th:value="${cart.fullname}" id="fname" name="firstname" placeholder="Hoa Trà">
                                 
                                 
                                 <label for="phone"><i class="fa fa-phone"></i> Phone</label>
-                                <input type="text" id="email" name="phone" placeholder="+84 888 101 028">
-                                
-                                
-                                
+                                <input type="number" th:value="${cart.phone}" id="phone" name="phone" placeholder="+84 888 101 028">
+
                                 <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
-                                <input type="text" id="adr" name="address" placeholder="223 Thích Quảng Đức P4 Q.Phú Nhuận">
+                                <input type="text" th:value="${cart.address}" id="adr" name="address" placeholder="223 Thích Quảng Đức P4 Q.Phú Nhuận">
                                 
 
                                 <div class="row">
                                     <div class="col-50">
-                                        <label for="state">Notes</label>
-                                        <input type="text" id="state" name="state" placeholder="Hiện tại nút checkout méo nhấn được nhé...">
+                                        <label for="state"><i class="fa fa-sticky-note-o" aria-hidden="true"></i> Notes</label>
+                                        <input type="text" th:value="${cart.notes}" id="state" name="state" placeholder="Hiện tại nút checkout méo nhấn được nhé...">
                                     </div>
                                     
                                 </div>
@@ -150,8 +154,8 @@
                         <label>
                             <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
                         </label>
-                        <input type="submit" value="Continue to checkout" class="btn">
-                    </form>
+                        <p hidden>[[${cart.id}]]</p>
+                        <button class="btn" id="btnCheckout">Continue to checkout</button>
                 </div>
             </div>
             <div class="col-25">
@@ -168,14 +172,14 @@
                             
                         </div>
                         
-                        <div th:each="cart : ${cartItems}">
+                        <div th:each="cart,iterStat : ${cartItems}">
                             
                             <div style="border-bottom: 2px solid black;" class="product">
                                 <div class="product-image">
                                     <img th:src="${'/images/'+cart.imagesP}">
                                 </div>
                                 <div class="product-details">
-                                    <div class="product-title" th:text="${cart.nameP}"></div>
+                                    <div class="product-title" th:text="${iterStat.count+'. '+cart.nameP}"></div>
                                     <div th:switch="${cart.size}">
                                         <p class="product-description" th:case="true">- Size lớn</p>
                                         <p class="product-description" th:case="false">- Size nhỏ</p>
@@ -193,16 +197,21 @@
                                     </div>
                                    
                                 </div>
+                                
                                 <div class="product-price" th:text="${#numbers.formatDecimal(cart.total ,0, 'COMMA', 0, 'POINT')+ ' đ'}"></div>
+                                <div class="cc1" hidden th:text="${cart.total}"></div>
                                 <div class="product-quantity">
+                                    <p hidden>[[${cart.id}]]</p>
                                     <input type="number" th:value="${cart.quantity}" min="1">
                                 </div>
-                                <div class="product-line-price" th:text="${#numbers.formatDecimal(cart.priceP*cart.quantity, 0, 'COMMA', 0, 'POINT')}+' đ'"></div>
+                                <div class="product-line-price" th:text="${#numbers.formatDecimal(cart.total*cart.quantity, 0, 'COMMA', 0, 'POINT')}+' đ'"></div>
+                                <div class="cc2" th:text="${cart.total*cart.quantity}" hidden></div>
                                    
                                 <div class="product-removal">
-                                        <button class="remove-product">
-                                            Remove
-                                        </button>
+                                    <p hidden>[[${cart.id}]]</p>
+                                    <button class="remove-product">
+                                        Remove
+                                    </button>
                                 </div>
                             </div>
                             
@@ -239,8 +248,7 @@
             src="js/checkout.js"></script>
         <script>
             $(window).load(function () {
-                updateQuantity($('.product-quantity input'));
-                
+                recalculateCart();
             });
         </script>        
     </body>
