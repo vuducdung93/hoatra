@@ -7,10 +7,16 @@ and open the template in the editor.
     Created on : Aug 18, 2018, 2:24:22 AM
     Author     : vudung
 */
-
+@import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,400italic|Montserrat:400,700);
+body{
+   font: inherit;
+}
+h1,h2,h3,h4,h5,h6{
+    
+}
 .navbar1{
     
-    font-family: raleway !important;
+    
     
     
 }
@@ -42,12 +48,6 @@ and open the template in the editor.
     top: -2px;
     
 }
-/*.navbar-fixed-top {
-    position: fixed;
-    
-    top: 0;
-    border: none !important;
-}*/
 
 nav>.active>a{
     background-color:#546076 !important;
@@ -242,4 +242,507 @@ nav>.active>a{
   font-size: 20px;
   line-height: 1.33;
   border-radius: 25px;
+}
+#main{
+    width: 100%;
+    height:100%;
+}
+
+/* phan cart */
+#cartDetail{
+    position: fixed;
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 100%;
+    z-index: 100001;
+    transition: 0.3s;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.modal-nav{
+    width: 100%;
+    height: 44px;
+    background-color: white;
+    position: sticky;
+    top:0;
+}
+.modal-nav .modal-close{
+    height: 100%;
+    width: 44px;
+    text-align: center;
+    float: left;
+}
+.modal-close .fas{
+    font-size: 30px;
+    color: #9d9d9d;
+    line-height: 44px;
+}
+.modal-nav .modal-name{
+    float:left;
+    font-size:18px;
+    font-weight: bold;
+    
+    line-height: 44px;
+    padding-left: 10px;
+}
+.modal-nav .modal-reset{
+    float:right;
+    padding-right: 8px;
+    font-size:18px;
+    text-align: center;
+    line-height: 44px;
+}
+.modals-body{
+    width: 100%;
+}
+.modals-body .modals-user{
+   
+    background-color: #faf6db;
+    
+}
+.lines{
+    width: 100%;
+    height: 10px;
+}
+.modals-user-content{
+    width: 100%;
+    height: 35px;
+    padding-left: 10px;
+    
+}
+.modals-user img{
+    width: 35px;
+    height: 35px;
+    float: left;
+}
+.modals-user .u-info{
+    
+    line-height: 35px;
+    font-weight: bold;
+    font-size: 15px;
+    float:left;
+}
+.modals-user .moneyright{
+    float:right;
+    line-height: 35px;
+    font-size: 15px;
+}
+.menu-item{
+    width: 100%;
+}
+.menu-item-content{
+    width: 97.5%;
+    margin-left: 2.5%;
+   
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e7ecef;
+    display: flex;
+}
+.item-main{
+    
+    width: 75%;
+    font-size: 15px;
+}
+.item-price{
+    margin-top: 7px;
+    color: #4f78a0;
+}
+.item-note{
+    color: #bbb;
+}
+.changeIcon{
+    margin: 0 auto;
+    font-size: 15px;
+    display: flex;
+    align-self: center!important;
+    height: 100%;
+}
+.menu-item-add{
+    background: #48739e;
+    
+    color: #fff;
+    margin: 0 auto;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 31px;
+    border-radius: 50%;
+    display: block;
+}
+.menu-item-minus{
+    
+    color: #ff1919;
+    box-shadow: inset 0 0 0 2px #ff3232;
+    margin: 0 auto;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 50%;
+    display: block;
+}
+.val-input{
+    display: block;
+    width: 30px;
+    height: 30px;
+    
+    text-align: center;
+    line-height: 30px;
+}
+.clear{
+    display: block;
+    clear: both;
+}
+#cartDetail .modal-footer{
+    width: 100%;
+    height: 43px;
+    font-size: 15px;
+    position: fixed;
+    bottom: 0;
+    background-color: #48739e;
+    color: white;
+    border-color: #48739e;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+#error-message-modal{
+    position: fixed;
+    background-color: rgba(0,0,0,.5);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100002;
+    display: none;
+    
+}
+.modal-dialog{
+    display: flex;
+    min-height: calc(100% - 2rem);
+    align-items: center;
+    position: relative;
+    width: auto;
+    margin: 1rem;
+}
+.modal-dialog-content{
+    width: 100%;
+    border-radius: 13px;
+}
+.dialog-inner{
+    padding: 15px;
+    border-radius: 13px 13px 0 0;
+    background: hsla(0,0%,100%,.95);
+    text-align: center;
+}
+.dialog-title{
+    font-size: 18px;
+    text-align: center;
+    font-weight: 600;
+}
+.dialog-input-field{
+    margin-top: 15px;
+    margin: 0;
+    padding: 0;
+}
+.dialog-input{
+    height: 26px;
+    background: #fff;
+    padding: 0 5px;
+    border: 1px solid rgba(0,0,0,.3);
+    font-size: 14px;
+    margin: 0;
+    margin-top: 15px;
+    border-radius: 0;
+    -webkit-appearance: none;
+    width: 100%;
+    display: block;
+    font-family: inherit;
+}
+.dialog-buttons{
+    height: 44px;
+    justify-content: center;
+    display: flex;
+    border-top: 1px solid #dfdfdf;
+}
+.dialog-button:first-child{
+    border-radius: 0 0 0 13px;
+    border-right: 1px solid #dfdfdf;
+}
+.dialog-button:last-child{
+    border-radius: 0 0 13px 0;
+}
+.dialog-button{
+    width: 100%;
+    padding: 0 5px;
+    height: 44px;
+    font-size: 17px;
+    line-height: 44px;
+    text-align: center;
+    color: #007aff;
+    display: block;
+    position: relative;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    cursor: pointer;
+    box-sizing: border-box;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    background: hsla(0,0%,100%,.95);
+}
+
+#modal-alert{
+    position: fixed;
+    background-color: rgba(0,0,0,.5);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100002;
+    display: none;
+}
+.dialog-alert{
+    height: 26px;
+    padding: 0 5px;
+    font-size: 14px;
+    margin: 0;
+    margin-top: 15px;
+    border-radius: 0;
+    -webkit-appearance: none;
+    width: 100%;
+    display: block;
+    font-family: inherit;
+}
+/*end*/
+/*phan check out*/
+#checkout{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 200%;
+    z-index: 100002;
+    transition: 0.3s;
+    background-color: white;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.foo-btn-sticky{
+    width: 100%;
+    height: 40px;
+    font-size: 15px;
+    position: fixed;
+    bottom: 0;
+    background-color: #08f;
+    color: white;
+    border-color: #48739e;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: inline;
+}
+.center{
+    text-align: center;
+}
+.right{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: #fff;
+}
+#map{
+    width: 100%;
+    height: 215px;
+}
+.location{
+    width: 100%;
+    display:flex;
+    height: auto;
+}
+.icon-direction{
+    width: 30px;
+    height: inherit;
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.direction-from{  
+    width: 100%;
+    height: calc(100%/3);
+    color: #f00;
+    margin-top: 5px;
+}
+.direction-to{
+    width: 100%;
+    height: calc(100%/3);
+    color: #00ab34;
+    margin-bottom: 5px;
+    
+}
+.fromto{
+    width: 100%;
+    height: calc(100%/3);
+    color: #3483fc;
+}
+.location-item{
+    width: calc(100% - 30px);
+}
+.location-a:not(:last-child) {
+    border-bottom: 1px solid #e9ecef;
+}
+.location-a {
+    width: 100%;
+    padding: 5px 10px 5px 0;
+    margin-left: 10px;
+    position: relative;
+}
+
+.location-name{
+    font-weight: 700;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 16px;  
+}
+.location-address:not(:first-child){
+    font-size: 13px;
+    display: flex;
+    
+}
+.location-address input{
+  width: 100%;  
+  font-size: 13px;
+  line-height: 1.5;
+  height: 35px;
+  white-space: nowrap;
+}
+
+.location-address span{
+    width: 40px;
+    color: #adb5bd;
+    margin: auto;
+    font-size: 16px;
+    height: inherit;
+}
+.o-menu{
+    border-bottom: 1px solid #e9ecef;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: #212529;
+}
+.o-menu-container{
+    width: 100%;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.o-menu-item:not(:last-child){
+    border-bottom: 1px solid #e9ecef;
+}
+.o-menu-item {
+    padding: 9px 70px 10px 0;
+    margin-left: 25px;
+    position: relative;
+}
+.o-menu-number {
+    width: 17px;
+    height: 17px;
+    display: inline-block;
+    background: #08f;
+    position: absolute;
+    border-radius: 3px;
+    left: -25px;
+    top: 9px;
+    line-height: 17px;
+    text-align: center;
+    color: #fff;
+}
+.o-menu-name{
+    line-height: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    
+}
+.o-menu-price {
+    position: absolute;
+    right: 0;
+    top: 7px;
+    
+}
+.o-fee-sum {
+    font-size: 15px;
+}
+.o-fee-item {
+    padding: 5px 0;
+}
+.row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -10px;
+    margin-left: -10px;
+}
+.col {
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    max-width: 100%;
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 10px;
+    padding-left: 10px;
+    min-width: 0;
+}
+.col-auto {
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none;
+    position: relative;
+    min-height: 1px;
+    padding-right: 10px;
+    padding-left: 10px;
+    min-width: 0;
+}
+.o-fee{
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: #212529;
+}
+.o-fee-code {
+    display: inline-block;
+    width: 120px;
+    padding: 2px 5px;
+    text-align: center;
+    background: #e9ecef;
+    margin-left: 5px;
+    white-space: nowrap;
+    vertical-align: -10%;
+    color: #fe0000;
+    font-weight: 700;
+    height: auto;
+}
+.o-fee-total {
+    font-size: 18px;
+    font-weight: 700;
+}
+.o-fee-note{
+    padding-left: 0;
+    padding-right: 0;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #dee2e6;   
+}
+.col textarea{
+    border: none;
 }

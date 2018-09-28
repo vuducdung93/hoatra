@@ -95,7 +95,7 @@ public class HoatraApplication {
         mailSender.setPort(587);
 
         mailSender.setUsername("vuducdung93@gmail.com");
-        mailSender.setPassword("synuong6870");
+        mailSender.setPassword("jbkmtzalhorfkznx");
 
         Properties props = mailSender.getJavaMailProperties();
         props.put("mail.transport.protocol", "smtp");

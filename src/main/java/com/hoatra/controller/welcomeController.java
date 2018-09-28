@@ -33,7 +33,6 @@ import com.hoatra.model.cartItemInfo;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.function.Consumer;
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
@@ -194,6 +193,7 @@ public class welcomeController {
         System.out.println(new ObjectMapper().writeValueAsString(user));
         CartInfo cart=userdao.checkContain(user);  
         session.setAttribute("USER", user);
+        
         return new ObjectMapper().writeValueAsString(cart);
     }
     // when user loginted get cart

@@ -3,11 +3,13 @@
     <head>
         <title>Hoa Trà</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
         <link rel="stylesheet" th:href="@{/css/styleMobile.css}" href="../../css/styleMobile.css" />
+        
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/rainyday.js/0.1.2/rainyday.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
         <style>
@@ -24,67 +26,288 @@
     
 
     <body  data-spy="scroll" data-target=".navbar1" data-offset="60">
+        
         <!-- Session -->
         <input hidden id="user" type="text" th:value="${session.USER}">
         <!-- Session -->
-        
-        <img id="test" class="navbar-header" src="/images/banner.jpg" style=" width:100%;"/>
-                    
-        
-        <nav class="navbar1 navbar-inverse navbar-fixed-top">
-            
-            <div class="container-fluid">
-                
-                
+        <div id="main">
+            <img id="test" class="navbar-header rain" src="" style=" width:100%;"/>
 
-                <div>
-                    <div id="myNavbar">
-                        <ul class="nav navbar-nav" id="menucategorios">
-                            <!-- locate of menu -->
-                        </ul>
+
+            <nav class="navbar1 navbar-inverse navbar-fixed-top">
+
+                <div class="container-fluid">
+
+
+
+                    <div>
+                        <div id="myNavbar">
+                            <ul class="nav navbar-nav" id="menucategorios">
+                                <!-- locate of menu -->
+                            </ul>
+                        </div>
                     </div>
                 </div>
+            </nav>
+            <img id="loadding"   src="/images/loading.gif" style=" width:100%;"/>    
+            <div id="categories">
+                <!-- locate of categories -->
+            </div>   
+
+
+            <div class="container-fluid" style="height: 350px;">
+
             </div>
-        </nav>
-        <img id="loadding"   src="/images/loading.gif" style=" width:100%;"/>    
-        <div id="categories">
-            <!-- locate of categories -->
-        </div>   
-            
-        
-        <div class="container-fluid" style="height: 350px;">
-            
+            <!-- layout chon option tung mon hang-->
+
+            <!-- end layout chon option tung mon hang-->
+
+            <!-- form checkout -->
+
+            <!-- end form checkout -->
+            <footer class="footer">
+                <div class="container">
+                    <ul class="social-icon animate pull-right">
+                        <li id="login">
+                            <button class="btn btn-primary"><text>Login with <text>
+                            <i class="fa fa-facebook-official"></i>  
+                             </button>
+                        </li>
+                        <li id="hi">
+                            wellcome,<span th:text="${session.USER.name}" th:unless="${session.USER == null}"></span>
+                        </li>
+                    </ul>
+                    <div onclick="document.getElementById('cartDetail').style.left = '0';$('body').css('overflow','hidden');" id="cart" style="width:80px"><i style="margin-top:5px; font-size: 40px;color: red;" class="fas fa-shopping-cart"></i><span id="slCart" style="background-color: blue;" class="badge">0</span></div>
+                </div>
+            </footer>
         </div>
-        <!-- layout chon option tung mon hang-->
-        
-        <!-- end layout chon option tung mon hang-->
-        
-        <!-- form checkout -->
-        
-        <!-- end form checkout -->
-        <footer class="footer">
-            <div class="container">
-                <ul class="social-icon animate pull-right">
-                    <li id="login">
-                        <button class="btn btn-primary"><text>Login with <text>
-                        <i class="fa fa-facebook-official"></i>  
-                         </button>
-                    </li>
-                    <li id="hi">
-                        wellcome,<span th:text="${session.USER.name}" th:unless="${session.USER == null}"></span>
-                    </li>
-                </ul>
-                <div onclick="window.location='/checkout';" id="cart" style="width:80px"><i style="margin-top:5px; font-size: 40px;color: red;" class="fas fa-shopping-cart"></i><span id="slCart" style="background-color: blue;" class="badge">0</span></div>
-            </div>
-        </footer>
         <div id="overlay">
         
         
-        </div>    
+        </div> 
+        
+        <div id="cartDetail">
+            <div class="modal-nav">
+                <div onclick="document.getElementById('cartDetail').style.left = '100%';$('body').css('overflow','visible');" class="modal-close">
+                    <i class="fas fa-angle-left"></i>
+                </div>
+                <div class="modal-name">Hoa trà</div>
+                <div class="modal-reset">
+                    Reset
+                </div>
+            </div>
+            <div class="modals-body">
+                <div class="modals-user">
+                    <div class="lines">
+                        
+                    </div>
+                    <div class="modals-user-content">
+                        <img class="img-circle" src="/images/l60Hf.png"/>
+                        <div class="u-info">
+                            &nbsp; &nbsp; Vu Dung
+                        </div>
+                        <div class="moneyright">
+                            <strong> 2</strong> items- <strong>125,000d</strong> &nbsp;
+                        </div>
+                    </div>
+                    <div class="lines">
+                        
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="lines"></div>
+                    <div class="menu-item-content">
+                        
+                        <div class="item-main">
+                            <div class="item-name">
+                                <strong>Trà đào (đá)</strong> [Big size, Vải thêm, Đào thêm]
+                            </div>
+                            <div class="item-price">
+                                85,000đ x 2 = 170,000đ
+                            </div>
+                            <span class="item-note">Note...</span>
+                        </div>
+                        <div class="changeIcon">
+                            <span class="menu-item-minus">
+                                <i class="fas fa-minus"></i>
+                            </span>
+                            <span class="val-input">
+                                1
+                            </span>
+                            <span class="menu-item-add">
+                                <i class="fas fa-plus"></i>
+                            </span>
+                            <span class="clear">
+                                
+                            </span>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    
+                </div>
+                
+                
+            </div>
+            <div class="modal-footer">
+                Continue
+            </div>
+        </div>
+        <div id="checkout">
+            <div class="modal-nav">
+                <div onclick="document.getElementById('checkout').style.left = '200%';$('body').css('overflow','hidden');" class="modal-close">
+                    <i class="fas fa-angle-left"></i>
+                </div>
+                <div class="modal-name">Checkout</div>
+            </div>
+            <div class="modals-body">
+                <div id="map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.0525222809147!2d106.67737351530609!3d10.807289392300627!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528ded759db13%3A0x88721a1ec8b50f45!2zMjIzIFRow61jaCBRdeG6o25nIMSQ4bupYywgUGjGsOG7nW5nIDQsIFBow7ogTmh14bqtbiwgSOG7kyBDaMOtIE1pbmgsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1537885732477" width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen></iframe>
+                </div>
+                
+                <div class="location">
+                    <div class="icon-direction">
+                        <div class="direction-from"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="fromto"> <i class="fas fa-ellipsis-v"></i></div>
+                        <div class="direction-to"><i class="fas fa-map-marker-alt"></i></div>
+                    </div>
+                    <div class="location-item">
+                        <div class="location-a">
+                            <div class="location-name">Hoa Trà Quán - LoThaMilk & Tea </div>
+                            <div class="location-address">223 Thích Quảng Đức,Quận Phú Nhuận, Hồ Chí Minh</div>
+                        </div>
+                        <div class="location-a">
+                            <div class="location-name">Vu Dung</div>
+                            <div class="location-address" style="border-bottom: 1px solid #e7ecef;">
+                                <span><i class="fas fa-address-card"></i></span>
+                                <input type="text" value="" placeholder="Please enter address...">
+                            </div>
+                            <div class="location-address">
+                                <span><i class="fa fa-phone"></i></span>
+                                <input type="number" value="" placeholder="Please enter phone number...">
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="lines" style="background-color: #e7ecef;"></div>
+                
+                <div class="o-menu">
+                    <div class="o-menu-container">
+                        <div>
+                            <div class="o-menu-item">
+                                <span class="o-menu-number">1</span>
+                                <div class="o-menu-name">
+                                    Trà vải &nbsp;
+                                    <span class="menu-item-note">[Regular Size, Vị lài]</span>
+                                </div>
+                                <span class="o-menu-price">40,000đ</span>
+                            </div>
+                            <div class="o-menu-item">
+                                <span class="o-menu-number">1</span>
+                                <div class="o-menu-name">
+                                    Trà vải &nbsp;
+                                    <span class="menu-item-note">[Regular Size, Vị lài]</span>
+                                </div>
+                                <span class="o-menu-price">40,000đ</span>
+                            </div>
+                          
+                            <div class="o-menu-item">
+                                <span class="modal-button text-primary">
+                                    <div>2 items more ...</div>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="o-fee ">
+                    <div class="o-menu-container">
+                        <div class="row o-fee-item o-fee-sum">
+                            <div class="col">
+                                Total 
+                                <strong>5</strong>
+                                items &nbsp;
+                            </div>
+                            <div class="col-auto">
+                                <strong>195,000d</strong>
+                            </div>
+                        </div>
+                        <div class="row o-fee-item">
+                            <div class="col">
+                                Ship fee: 
+                            </div>
+                            <div class="col-auto">
+                                195,000d
+                            </div>
+                        </div>
+                        <div class="row o-fee-item">
+                            <div class="col">
+                                Discount code
+                                <button class="form-control form-control-sm o-fee-code text-uppercase">Enter code</button>
+                            </div>
+                            <div class="col-auto">
+                               
+                            </div>
+                        </div>
+                        <div class="row o-fee-item o-fee-total">
+                            <div class="col ">Total :</div>
+                            <div class="col-auto"><strong>262,150đ</strong></div>
+                        </div>
+                        <div class="row o-fee-item o-fee-note">
+                            <div class="col ">
+                                <textarea name="note" class="form-control" cols="30" rows="1" placeholder="Note"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="foo-btn-sticky">
+                <div class="center">
+                    Submit Order
+                    <i class="fas fa-angle-right"></i>
+                </div>
+                <div class="right">
+                    189,000d
+                </div>
+            </div>
+        </div>
+        
+        <div id="error-message-modal">
+            <div class="modal-dialog">
+                <div class="modal-dialog-content">
+                    <div class="dialog-inner">
+                        <div class="dialog-title">Note</div>
+                        <div class="dialog-input-field">
+                            <input type="text" class="dialog-input" value=""/>
+                        </div>
+                    </div>
+                    <div class="dialog-buttons">
+                        <span class="dialog-button dialog-cancel">Cancel</span>
+                        <span class="dialog-button dialog-done">Done</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal-alert">
+            <div class="modal-dialog">
+                <div class="modal-dialog-content">
+                    <div class="dialog-inner">
+                        <div class="dialog-title">Reset cart</div>
+                        <div class="dialog-input-field">
+                            <div class="dialog-alert">Do you want to empty the cart?</div>
+                        </div>
+                    </div>
+                    <div class="dialog-buttons">
+                        <span class="dialog-button dialog-No">No</span>
+                        <span class="dialog-button dialog-Reset">Reset</span>
+                    </div>
+                </div>
+            </div>
+        </div>
         
         <script type="text/javascript" src="js/jquery/jquery.js"></script>
         
-        <script>
+        <script th:inline="javascript">
         $('#categories').css('display','none');  //wait load content  
         window.fbAsyncInit = function() {
             FB.init({
@@ -126,6 +349,8 @@
                                     document.getElementById("hi").innerHTML=`wellcome,`+data.name;
                                     $('#hi').css('display','block');
                                     document.getElementById("slCart").innerHTML =data.count;
+                                    sessionStorage.setItem('user', "true");
+                                    
                                 }
                             });
                         });
@@ -133,32 +358,47 @@
                 },{scope: 'public_profile, email'});
            }
                
+            /*<![CDATA[*/
             
-            var user = $('#user').val();
+            var user = /*[[${session.USER}]]*/ 'default';
+            /*]]>*/
+            
             var login;
             var idcart;
-            if(user == ''){// when not login
+            
+            if(user == null && sessionStorage.getItem('user')==null){// when not login
                 $('#login').css('display','block');
                 $('#hi').css('display','none');
                 login=false;
+            
+                
             }else{  // when logined
                 $('#login').css('display','none');
                 $('#hi').css('display','block');
+                
+                loadlai();
+            
+            }
+            function loadlai(){
                 $.ajax({
                     type: 'GET',
+                    headers: {Accept: "application/json; charset=utf-8", "Content-Type": "application/json; charset=utf-8"},
+                    dataType: 'json',
+                    cache: false,
                     url: '/getCart',
                     success: function (res) {
-                        var data=jQuery.parseJSON(res);
-                        
+                        //var data=jQuery.parseJSON(res);
+                                console.log(res.count);
                                 login=true;
-                                idcart=data.id;
+                                idcart=res.id;
                                 $('#login').css('display','none');
-                                document.getElementById("hi").innerHTML=`wellcome,`+data.name;
+                                document.getElementById("hi").innerHTML=`wellcome,`+res.name;
                                 $('#hi').css('display','block');
-                                document.getElementById("slCart").innerHTML =data.count;
+                                document.getElementById("slCart").innerHTML =res.count;
                     }
                 });
             }
+        
             $('#login').click(function(){
                 loginface();
             });
@@ -168,13 +408,16 @@
             
             //chinh lai phan thanh dieu huong
             var offset = 50;
+            
             function dieuhuong(a){         
                 $('.navbar1').click(function (e) {
+                    
                     e.preventDefault();
                     $($(a).attr('href'))[0].scrollIntoView();
-                    scrollBy(0, -offset);                
+                    window.scrollBy(0, -offset); 
                     $(a).parent().addClass('active');
                     $(a).parent().siblings().removeClass('active');
+                    
                 });
                 
             };
@@ -385,10 +628,12 @@
                 
                 
                 document.getElementById("overlay").style.display = "block";
+                $('body').css('overflow','hidden');
                 
             });
             $(document).on('click', '#close', function () {
                 document.getElementById("overlay").style.display = "none";
+                $('body').css('overflow','visible');
             });
             $(document).on('click', '#plus', function () {
                 var i= Number($("#quantity").text())+1;
@@ -413,9 +658,73 @@
            }
            
            
-   
-        </script>
+            var image = document.getElementById('test');
+                image.onload = function() {
+                  var engine = new RainyDay({
+                    image: this,
+                    gravityAngle: Math.PI / 5
 
+                  });
+                  engine.trail = engine.TRAIL_SMUDGE;
+                  engine.rain([ [3, 2, 2] ], 100);
+                  engine.rain(
+                    [
+                        [1, 0, 20], 
+                        [3, 3, 1],
+                        [1, 2, 19]
+                    ],                       
+                    100);
+                 // engine.rain([ [0, 2, 200], [3, 3, 1] ], 100);
+                };
+                image.crossOrigin = 'anonymous';
+                image.src = '/images/banner.jpg';
+                
+            $('.item-note').click(function(){
+                var a=$(this);
+                $('#error-message-modal').css('display','block');
+                $('.dialog-input').focus();
+                if($(a).text()=='Note...'){
+                    $('.dialog-input').val('');
+                }else{
+                    $('.dialog-input').val($(a).text());
+                }
+                $('.dialog-cancel').click(function(){
+                    $('#error-message-modal').css('display','none');
+                });
+                $('.dialog-done').click(function(){ 
+                    var value=$('.dialog-input').val().trim();
+                    if(value != ""){
+                        $(a).text(value);
+                        $(a).css('color','black');
+                    }else{
+                        $(a).text('Note...');
+                        $(a).css('color','#bbb');
+                    }
+                    $('#error-message-modal').css('display','none');
+                    a=null;
+                });
+                
+            });
+            
+            
+            $('.modal-reset').click(function(){
+                 $('#modal-alert').css('display','block');
+                 $('.dialog-No').click(function(){
+                     $('#modal-alert').css('display','none');
+                 });
+                 $('.dialog-Reset').click(function(){
+                     $('#modal-alert').css('display','none');
+                 });
+            });
+            
+            
+            $('.modal-footer').click(function(){
+                document.getElementById('checkout').style.left = '0';$('body').css('overflow','hidden');
+            });
+            
+            
+        </script>
+         
     </body>
 
 
