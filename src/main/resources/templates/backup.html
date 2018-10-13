@@ -7,18 +7,25 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
         <link rel="stylesheet" th:href="@{/css/styleMobile.css}" href="../../css/styleMobile.css" />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/rainyday.js/0.1.2/rainyday.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
         <style>
             body {
                 position: relative; 
             }
-            
+            #section1 {color: black; background-color: #ffffff;}
+            #section2 {color: black; background-color: #ffffff;}
+            #section3 {color: black; background-color: #ffffff;}
+            #section4 {padding-bottom: 100px;color: black; background-color: #ffffff;}
 
         </style>
     </head>
     
 
-    <body  data-spy="scroll" data-target="#navbar1" data-offset="60">
+    <body  data-spy="scroll" data-target=".navbar1" data-offset="60">
         
         <!-- Session -->
         <input hidden id="user" type="text" th:value="${session.USER}">
@@ -27,7 +34,7 @@
             <img id="test" class="navbar-header rain" src="" style=" width:100%;"/>
 
 
-            <nav id="navbar1" class="navbar1 navbar-inverse navbar-fixed-top">
+            <nav class="navbar1 navbar-inverse navbar-fixed-top">
 
                 <div class="container-fluid">
 
@@ -37,64 +44,38 @@
                         <div id="myNavbar">
                             <ul class="nav navbar-nav" id="menucategorios">
                                 <!-- locate of menu -->
-                                <li  th:each="item : ${categogies}" style="text-align: center;width:25%;">
-                                    <a th:href="${'#section'+item.id}">[[${item.name}]]</a>
-                                </li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </nav>
             <!--<img id="loadding"   src="/images/loading.gif" style=" width:100%;"/>     -->
-            <div id="categories" >
+            <div id="categories">
                 <!-- locate of categories -->
                 <!-- phan test -->
-                <section th:id="${'section'+item.id}" th:each="item : ${categogies}">
-                    
-                    <div class="d-menu-title text-uppercase false">[[${item.name}]]</div>
-                    <div  class="d-menu-grids">
-                        <div th:each="product: ${products}" th:if="${product.cId} == ${item.id} " class="d-menu-grid">
-                            <p hidden>[[${product.id}]]</p>
+                <section id="1">
+                    <div class="d-menu-title text-uppercase false">Special Tea</div>
+                    <div class="d-menu-grids">
+                        <div class="d-menu-grid">
                             <div class="menu-grid-img">
                                 <div class="embed-responsive">
-                                    <img th:src="${'/images/'+product.images}" class="embed-responsive-img" alt="Trà sữa Phúc Long (đá)">
+                                    <img src="/images/1.jpg" class="embed-responsive-img" alt="Trà sữa Phúc Long (đá)">
                                 </div>
                             </div>
                             <div class="menu-grid-padding">
-                                <div class="menu-grid-name text-truncate">[[${product.name}]]</div>
-                                <div class="row no-gutters align-items-center mt-1">
-                                    <div class="col">
-                                        <div class="menu-grid-price text-truncate" th:text="${#numbers.formatDecimal(product.price ,0, 'COMMA', 0, 'POINT')+ 'đ'}"></div>
-                                    </div>
-                                    <div class="col-auto2">
-                                        <div class="menu-grid-number">
-                                            <div class="row no-gutters justify-content-end align-items-center">
-                                                <div class="col-auto2 text-center ">
-                                                    <span class="menu-item-add-small"><i class="fas fa-plus"></i></span>
-                                                </div>
-                                            </div>
-                                        </div> 
-                                    </div>
-                                </div>
+                                <div class="menu-grid-name text-truncate">Trà sữa Phúc Long (đá)</div>
                             </div>
                         </div>
-                        
-                        
                     </div>
                 </section>
-                <div class="container-fluid" style="height:50px;">
-                    
-                </div>
-                
-                
-                
-                
                 
                 
             </div>   
 
 
-           
+            <div class="container-fluid" style="height: 350px;">
+
+            </div>
             <!-- layout chon option tung mon hang-->
 
             <!-- end layout chon option tung mon hang-->
@@ -311,155 +292,10 @@
                 </div>
             </div>
         </div>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/rainyday.js/0.1.2/rainyday.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         
+        <script type="text/javascript" src="js/jquery/jquery.js"></script>
         <script type="text/javascript" src="js/cart.js"></script>
-        <script type="text/javascript" src="js/product.js"></script>
-        <script th:inline="javascript">
-        //$('#categories').css('display','none');  //wait load content  
-        window.fbAsyncInit = function() {
-            FB.init({
-              appId            : '480433499099624',
-              autoLogAppEvents : true,
-              xfbml            : true,
-              version          : 'v3.1'
-            });
-          };
-
-          (function(d, s, id){
-             var js, fjs = d.getElementsByTagName(s)[0];
-             if (d.getElementById(id)) {return;}
-             js = d.createElement(s); js.id = id;
-             js.src = "https://connect.facebook.net/en_US/sdk.js";
-             fjs.parentNode.insertBefore(js, fjs);
-           }(document, 'script', 'facebook-jssdk'));
-           var person= {userID:"",name: "",accessToken: "", picture: "",email: "" };
-           function loginface(){
-               FB.login(function (response){
-                    if(response.status=="connected"){
-                        person.accessToken=response.authResponse.accessToken;
-                        person.userID=response.authResponse.userID;
-                        FB.api('/me?fields=id,name,first_name,last_name,email,picture.type(large)',function (userData){
-                            person.name = userData.name;
-                            person.email = userData.email;
-                            person.picture = userData.picture.data.url;
-                            
-                            $.ajax({
-                                url: "/login",
-                                method: "POST",
-                                data: person,
-                                dataType: 'text',
-                                success: function(res){
-                                    var data=jQuery.parseJSON(res);
-                                    idcart=data.id;
-                                    login=true;
-                                    $('#login').css('display','none');
-                                    document.getElementById("hi").innerHTML=`wellcome,`+data.name;
-                                    $('#hi').css('display','block');
-                                    document.getElementById("slCart").innerHTML =data.count;
-                                    sessionStorage.setItem('user', "true");
-                                    
-                                }
-                            });
-                        });
-                    }
-                },{scope: 'public_profile, email'});
-           }
-               
-            /*<![CDATA[*/
-            
-            var user = /*[[${session.USER}]]*/ 'default';
-            /*]]>*/
-            
-            var login;
-            var idcart;
-            
-            if(user == null && sessionStorage.getItem('user')==null){// when not login
-                $('#login').css('display','block');
-                $('#hi').css('display','none');
-                login=false;
-            
-                
-            }else{  // when logined
-                $('#login').css('display','none');
-                $('#hi').css('display','block');
-                
-                loadlai();
-            
-            }
-            function loadlai(){
-                $.ajax({
-                    type: 'GET',
-                    headers: {Accept: "application/json; charset=utf-8", "Content-Type": "application/json; charset=utf-8"},
-                    dataType: 'json',
-                    cache: false,
-                    url: '/getCart',
-                    success: function (res) {
-                        //var data=jQuery.parseJSON(res);
-                        
-                                console.log(res);
-                                login=true;
-                                idcart=res.id;
-                                $('#login').css('display','none');
-                                document.getElementById("hi").innerHTML=`wellcome,`+res.name;
-                                $('#hi').css('display','block');
-                                document.getElementById("slCart").innerHTML =res.count;
-                    }
-                });
-            }
-        
-            $('#login').click(function(){
-                loginface();
-            });
-            
-            var itemProduct;
-            var listLevelSugar;
-            
-            //chinh lai phan thanh dieu huong
-           
-            
-            
-            
-            //end chinh lai phan thanh dieu huong
-            
-            
-            
-            
-            
-            
-            
-           
-           
-           
-           var image = document.getElementById('test');
-                /*image.onload = function() {
-                  var engine = new RainyDay({
-                    image: this,
-                    gravityAngle: Math.PI / 5
-
-                  });
-                  engine.trail = engine.TRAIL_SMUDGE;
-                  engine.rain([ [3, 2, 2] ], 100);
-                  engine.rain(
-                    [
-                        [1, 0, 20], 
-                        [3, 3, 1],
-                        [1, 2, 19]
-                    ],                       
-                    100);
-                 // engine.rain([ [0, 2, 200], [3, 3, 1] ], 100);
-                };
-                image.crossOrigin = 'anonymous';*/
-                image.src = '/images/banner.jpg';
-                
-            
-            
-            
-            
-            
-        </script>
+        <script th:inline="javascript"></script>
          
     </body>
 

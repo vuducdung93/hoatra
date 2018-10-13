@@ -43,7 +43,7 @@ public class userDAO {
                 session.flush();
             }
 
-            String sql="select new "+CartInfo.class.getName()+"(c.id,c.notes,c.user.name,(select count(*) from c.cartItems)) from "+Cart.class.getName()+" c where c.user.UserId='"+user.getUserId()+"'";
+            String sql="select new "+CartInfo.class.getName()+"(c.id,c.notes,c.user.name,(select sum(quantity) from c.cartItems)) from "+Cart.class.getName()+" c where c.user.UserId='"+user.getUserId()+"'";
             List<CartInfo> carts=session.createQuery(sql,CartInfo.class).getResultList();
             if(carts.size()==0){
                 Cart cart=new Cart();

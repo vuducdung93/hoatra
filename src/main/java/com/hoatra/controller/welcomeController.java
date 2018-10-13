@@ -81,9 +81,11 @@ public class welcomeController {
             
     }
     @RequestMapping(value= "/", method=RequestMethod.POST)
-    public String welcome(HttpServletRequest request) {
+    public String welcome(HttpServletRequest request,Model model) {
             int width=Integer.parseInt(request.getParameter("width"));
             int height=Integer.parseInt(request.getParameter("height"));
+            model.addAttribute("categogies", categoriesdao.getListCate());
+            model.addAttribute("products", productdao.getListProduct());
             if(width<=480)
                 return "welcomeMobile";
             else
@@ -125,11 +127,12 @@ public class welcomeController {
     }
     
     @RequestMapping("/checkout")
-    public String checkout(Model model,HttpSession session){
+    @ResponseBody
+    public String checkout(Model model,HttpSession session) throws JsonProcessingException{
         User us=(User)session.getAttribute("USER");
-        model.addAttribute("cartItems",addtocartdao.getListcartitem(us.getUserId()));
-        model.addAttribute("cart",userdao.getCart(us.getUserId()));
-        return "checkout2";
+//        model.addAttribute("cartItems",addtocartdao.getListcartitem(us.getUserId()));
+//        model.addAttribute("cart",userdao.getCart(us.getUserId()));
+        return new ObjectMapper().writeValueAsString(addtocartdao.getListcartitem(us.getUserId()));
     }
     
     @RequestMapping(value="/order", method=RequestMethod.POST)//when user Order
@@ -170,13 +173,13 @@ public class welcomeController {
         boolean a=addtocartdao.removeItem(id);
         return a+"";
     }
-    @RequestMapping(value="/updateItem", method=RequestMethod.POST)// remove item cart
+    @RequestMapping(value="/updateItem", method=RequestMethod.POST)// update item cart
     @ResponseBody
     public String updateItem(HttpServletRequest request){
         int id=Integer.parseInt(request.getParameter("itemId").trim());
         int value=Integer.parseInt(request.getParameter("value"));
-        boolean a=addtocartdao.removeItem(id);
-        return a+"";
+        boolean a=addtocartdao.updateItem(id, value);
+        return "";
     }
     
     //when user login
@@ -193,7 +196,7 @@ public class welcomeController {
         System.out.println(new ObjectMapper().writeValueAsString(user));
         CartInfo cart=userdao.checkContain(user);  
         session.setAttribute("USER", user);
-        
+        System.out.println(new ObjectMapper().writeValueAsString(cart));
         return new ObjectMapper().writeValueAsString(cart);
     }
     // when user loginted get cart
