@@ -46,9 +46,7 @@ $('.item-note').click(function(){
     });
 
 });
-$('.modal-footer').click(function(){
-    document.getElementById('checkout').style.left = '0';$('body').css('overflow','hidden');
-});
+
 $.ajax({
     type: 'GET',
     url: '/ListLevelSugar',
@@ -58,13 +56,13 @@ $.ajax({
 });
 $('.d-menu-grid').click(function(){
    var id=$(this).children('p').text();
-   console.log(id);
+   
    $.ajax({
        type: 'GET',
        url: '/Productdetails?id='+id,
        dataType: 'json',
        success: function (data) {
-           console.log(data);
+          
            var html=`<div class="modal-content">
                     <div class="modal-nav1">
                         <div class="container">
@@ -198,24 +196,20 @@ $('.d-menu-grid').click(function(){
                     $('#overlay').css('height','0');
                     $('body').css('overflow','visible');
                 });
-                $(document).on('click', '#overlay .menu-item-add', function () {
-                    
+                $('#overlay .menu-item-add').click( function () {
                     var i= Number($("#quantity").text())+1;
                     
                     $("#quantity").text(i);
                     tinhtien(data.price);
                 });
-                $(document).on('click', '#overlay .menu-item-minus', function () {
+                $('#overlay .menu-item-minus').click(function () {
                     var i= Number($("#quantity").text())-1;
                     if(i>0){
                         $("#quantity").text(i);
                     }
                     tinhtien(data.price);
                 });
-                
-                
-                
-                
+                    
        }
     });
     document.getElementById("overlay").style.height = "100%";
@@ -240,7 +234,7 @@ function addtocart(productId) {
             topping.push($(this).siblings('p').text());
         });
         var size=$('input[name=size]:checked').siblings('p').text();
-        var quantity=$('#quantity').text();
+        var quantity=Number($('#quantity').text());
         var idProduct=productId;
         var itemcart = {
             idProduct:idProduct,
@@ -250,19 +244,20 @@ function addtocart(productId) {
             topping:topping.toString(),
             mucduong:mucduong
         };
-        document.getElementById("slCart").innerHTML = Number($('#slCart').text())+1;
-        document.getElementById("overlay").style.display = "none";
+        $('.slcart').text(Number($('#mainsl').text())+quantity);
+        $('#overlay').css('height','0');
+        $('body').css('overflow','visible');
 
         $.ajax({
             url: "/addtocart",
             method: "POST",
             data: itemcart,
             dataType: 'text',
-            success: function(){
-                console.log('ok');
+            success: function(data){
+                console.log(data);
             }
         });
     }else{
        loginface(); 
     }
-    };
+};

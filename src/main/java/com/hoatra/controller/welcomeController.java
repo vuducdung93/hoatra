@@ -32,7 +32,9 @@ import com.hoatra.model.UserInfo;
 import com.hoatra.model.cartItemInfo;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
@@ -126,13 +128,22 @@ public class welcomeController {
         return s;
     }
     
-    @RequestMapping("/checkout")
+    @RequestMapping("/viewcart")
     @ResponseBody
-    public String checkout(Model model,HttpSession session) throws JsonProcessingException{
+    public String viewcart(Model model,HttpSession session) throws JsonProcessingException{
         User us=(User)session.getAttribute("USER");
 //        model.addAttribute("cartItems",addtocartdao.getListcartitem(us.getUserId()));
 //        model.addAttribute("cart",userdao.getCart(us.getUserId()));
         return new ObjectMapper().writeValueAsString(addtocartdao.getListcartitem(us.getUserId()));
+    }
+    @RequestMapping("/checkout")
+    @ResponseBody
+    public String checkout(Model model,HttpSession session) throws JsonProcessingException{
+        User us=(User)session.getAttribute("USER");
+        Map<String,Object> map=new HashMap<String,Object>();  
+        map.put("cart", userdao.getCart(us.getUserId()));
+        map.put("cartItems",addtocartdao.getListcartitem(us.getUserId()));
+        return new ObjectMapper().writeValueAsString(map);
     }
     
     @RequestMapping(value="/order", method=RequestMethod.POST)//when user Order
@@ -161,9 +172,9 @@ public class welcomeController {
         String size=request.getParameter("size");
         String topping=request.getParameter("topping");
         String mucduong=request.getParameter("mucduong");
-        System.out.println(idProduct+" "+idcart+" "+quantity+" "+size+" "+topping+" "+mucduong);
-        addtocartdao.add(idProduct, idcart, quantity, size, topping, mucduong);
-        return "";
+        System.out.println(idProduct+" ok "+idcart+" ok "+quantity+" ok "+size+" ok "+topping+" ok "+mucduong);
+        boolean a= addtocartdao.add(idProduct, idcart, quantity, size, topping, mucduong);
+        return a+"";
     }
     
     @RequestMapping(value="/removeitem", method=RequestMethod.POST)// remove item cart
@@ -204,6 +215,7 @@ public class welcomeController {
     @ResponseBody
     public String getCart(HttpSession session) throws JsonProcessingException{
         CartInfo cart=userdao.checkContain((User) session.getAttribute("USER"));
+        
         return new ObjectMapper().writeValueAsString(cart);
     }
     

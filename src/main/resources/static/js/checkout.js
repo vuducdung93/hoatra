@@ -2,158 +2,102 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- * @author vudung
  */
-
-/* Set rates + misc */
-var taxRate = 0.05;
-//var shippingRate = 15.00; 
-var fadeTime = 300;
-var shipping=0;
-
-/* Assign actions */
-
-$('.product-quantity input').change( function() {
-    
-  if(Number($(this).val())<1){
-      $(this).val('1');
-  } else{
-      updateQuantity(this);
-      $.ajax({
-        url: "/updateItem",
-        method: "POST",
-        data: {itemId:$(this).siblings('p').text(),value:$(this).val()},
-        dataType: 'text',
-        success: function(){
-            console.log('ok');
-        }
-    });
-  }
-  
-});
-$('#btnCheckout').click(function (){
-    $.ajax({
-        url: "/order",
-        method: "POST",
-        data: {id:$(this).siblings('p').text(),fullname:$('#fname').val(),phone:$('#phone').val(),address:$('#adr').val(),notes:$('#state').val()},
-        dataType: 'text',
-        success: function(){
-            console.log('ok');
-        }
-    });
-});
-
-// remove item cart
-$('.product-removal button').click( function() {
-    removeItem(this);
-    var id=$(this).siblings('p').text();
-    console.log(id);
-    $.ajax({
-        url: "/removeitem",
-        method: "POST",
-        data: {itemId:id},
-        dataType: 'text',
-        success: function(res){
-            
-        }
-    });
-});
-
-
-
-/* Recalculate cart */
-function recalculateCart()
-{
-  var subtotal = 0;
-  
-  /* Sum up row totals */
-  $('.product').each(function () {
-    subtotal += parseFloat($(this).children('.cc2').text());
-  });
-  
-  /* Calculate totals */
-  //var tax = subtotal * taxRate;
- 
-  if(subtotal>=49000 && subtotal<=109000){
-      shipping=12000;
-  }
-  var total = subtotal + shipping;
-  
-  /* Update totals display */
-  $('.totals-value').fadeOut(fadeTime, function() {
-    $('#cart-subtotal').html(number_format(subtotal, 0)+' đ');
-    //$('#cart-tax').html(tax);
-    $('#cart-shipping').html(number_format(shipping, 0)+' đ');
-    $('#cart-total').html(number_format(total, 0)+' đ');
-    if(total == 0){
-      $('.checkout').fadeOut(fadeTime);
-    }else{
-      $('.checkout').fadeIn(fadeTime);
-    }
-    $('.totals-value').fadeIn(fadeTime);
-  });
-}
-
-
-/* Update quantity */
-function updateQuantity(quantityInput)
-{
-  /* Calculate line price */
-  var productRow = $(quantityInput).parent().parent();
-  var price = parseFloat(productRow.children('.cc1').text());
-  var quantity = $(quantityInput).val();
-  var linePrice = price * quantity;
-  
-  /* Update line price display and recalc cart totals */
-  productRow.children('.product-line-price').each(function () {
-    $(this).fadeOut(fadeTime, function() {
+$('.modal-footer').click(function(){
+    if(user==null){
         
-      $(this).text(number_format(linePrice, 0)+' đ');
-      recalculateCart();
-      $(this).fadeIn(fadeTime);
-    });
-  });  
-  productRow.children('.cc2').each(function () {
-      $(this).text(linePrice);
-  });
-}
-
-
-/* Remove item from cart */
-function removeItem(removeButton)
-{
-  /* Remove row from DOM and recalc cart total */
-  var productRow = $(removeButton).parent().parent();
-  productRow.slideUp(fadeTime, function() {
-    productRow.remove();
-    recalculateCart();
-  });
-}
-
-function number_format(number, decimals, decPoint, thousandsSep) {
-    decimals = Math.abs(decimals) || 0;
-    number = parseFloat(number);
-
-    if (!decPoint || !thousandsSep) {
-        decPoint = '.';
-        thousandsSep = ',';
+    }else{
+        //console.log(user);
+        document.getElementById('checkout').style.left = '0';$('body').css('overflow','hidden');
+        $.ajax({
+            type: 'GET',
+            url: '/checkout',
+            dataType: 'json',
+            success: function(data){
+                var cart=data.cart;
+                var location= ` <div class="location-name">`+user.name+`</div>
+                                <div class="location-address" style="border-bottom: 1px solid #e7ecef;">
+                                    <span><i class="fas fa-address-card"></i></span>
+                                    <input type="text" value="`+cart.address+`" placeholder="Please enter address...">
+                                </div>
+                                <div class="location-address">
+                                    <span><i class="fa fa-phone"></i></span>
+                                    <input type="number" value="`+cart.phone+`" placeholder="Please enter phone number...">
+                                </div>`;
+                if(cart.notes!=""){
+                    $('#noteCart').text(cart.notes);
+                    $('#noteCart').css('color','black');
+                }
+                var cartitems=data.cartItems;
+                console.log(cartitems);
+                var html="";
+                cartitems.every(function(element,index){
+                   var a="";
+                   if(element.size == true){
+                       a+="size lon";
+                   }else{
+                     a+=  "size nho";
+                   }
+                   if(element.list !=null){
+                        element.list.forEach(function(itemt){
+                            a+=", "+itemt.name;
+                        });
+                    }
+                   switch (element.mucduong) {
+                        case 1:
+                            a+=", 100% đường";
+                            break;
+                        case 2:
+                             a+=", 70% đường";
+                            break;
+                        case 3:
+                             a+=", 30% đường";
+                            break;
+                        case 4:
+                             a+=", 0% đường";
+                            break;
+                    }
+                    
+                   var item=`<div class="o-menu-item">
+                                <span class="o-menu-number">`+element.quantity+`</span>
+                                <div class="o-menu-name">
+                                    `+element.nameP+` &nbsp;
+                                    <span class="menu-item-note">[`+a+`]</span>
+                                </div>
+                                <span class="o-menu-price">`+number_format(element.total*element.quantity,0)+`đ</span>
+                            </div>`;
+                
+                    html+=item;
+                    if(index>0){
+                        return false;
+                    }else{
+                         return true;
+                    }
+                    
+                    
+                });
+                if(cartitems.length>2){
+                    var c=0;
+                    for(i=2;i<cartitems.length;i++){
+                        c+=cartitems[i].quantity;
+                    }
+                    console.log(c);
+                    var dis="";
+                    if(c==1){
+                        dis=c+" item more ...";
+                    }else{
+                        dis=c+" items more ...";
+                    }
+                    html+=`<div class="o-menu-item">
+                                    <span class="modal-button text-primary">
+                                        <div>`+dis+`</div>
+                                    </span>
+                                </div>`;
+                }
+                document.getElementById("location-U").innerHTML=location;
+                document.getElementById("cartitemsCheckout").innerHTML=html;
+            }
+        });
     }
+});
 
-    var roundedNumber = Math.round(Math.abs(number) * ('1e' + decimals)) + '';
-    var numbersString = decimals ? (roundedNumber.slice(0, decimals * -1) || 0) : roundedNumber;
-    var decimalsString = decimals ? roundedNumber.slice(decimals * -1) : '';
-    var formattedNumber = "";
-
-    while (numbersString.length > 3) {
-        formattedNumber += thousandsSep + numbersString.slice(-3)
-        numbersString = numbersString.slice(0, -3);
-    }
-
-    if (decimals && decimalsString.length === 1) {
-        while (decimalsString.length < decimals) {
-            decimalsString = decimalsString + decimalsString;
-        }
-    }
-
-    return (number < 0 ? '-' : '') + numbersString + formattedNumber + (decimalsString ? (decPoint + decimalsString) : '');
-}

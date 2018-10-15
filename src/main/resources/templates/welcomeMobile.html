@@ -116,7 +116,7 @@
                     </ul>
                     <div  id="cart" style="width:80px">
                         <i style="margin-top:3px; font-size: 30px;color: #0ccaff;" class="fas fa-shopping-cart"></i>
-                        <span id="slCart" style="background-color: #fd7e14;" class="badge">0</span>
+                        <span id="mainsl" style="background-color: #fd7e14;" class="badge slcart">0</span>
                     </div>
                 </div>
             </footer>
@@ -182,16 +182,9 @@
                             <div class="location-name">Hoa Trà Quán - LoThaMilk & Tea </div>
                             <div class="location-address">223 Thích Quảng Đức,Quận Phú Nhuận, Hồ Chí Minh</div>
                         </div>
-                        <div class="location-a">
-                            <div class="location-name">Vu Dung</div>
-                            <div class="location-address" style="border-bottom: 1px solid #e7ecef;">
-                                <span><i class="fas fa-address-card"></i></span>
-                                <input type="text" value="" placeholder="Please enter address...">
-                            </div>
-                            <div class="location-address">
-                                <span><i class="fa fa-phone"></i></span>
-                                <input type="number" value="" placeholder="Please enter phone number...">
-                            </div>
+                        <div id="location-U" class="location-a">
+                            <!-- ajax checkout js load-->
+                            
                         </div>
                     </div>
                     
@@ -200,29 +193,8 @@
                 
                 <div class="o-menu">
                     <div class="o-menu-container">
-                        <div>
-                            <div class="o-menu-item">
-                                <span class="o-menu-number">1</span>
-                                <div class="o-menu-name">
-                                    Trà vải &nbsp;
-                                    <span class="menu-item-note">[Regular Size, Vị lài]</span>
-                                </div>
-                                <span class="o-menu-price">40,000đ</span>
-                            </div>
-                            <div class="o-menu-item">
-                                <span class="o-menu-number">1</span>
-                                <div class="o-menu-name">
-                                    Trà vải &nbsp;
-                                    <span class="menu-item-note">[Regular Size, Vị lài]</span>
-                                </div>
-                                <span class="o-menu-price">40,000đ</span>
-                            </div>
-                          
-                            <div class="o-menu-item">
-                                <span class="modal-button text-primary">
-                                    <div>2 items more ...</div>
-                                </span>
-                            </div>
+                        <div id="cartitemsCheckout">
+                            <!-- ajax checkout js load-->
                         </div>
                     </div>
                 </div>
@@ -232,11 +204,11 @@
                         <div class="row o-fee-item o-fee-sum">
                             <div class="col">
                                 Total 
-                                <strong>5</strong>
+                                <strong class="slcart">5</strong>
                                 items &nbsp;
                             </div>
                             <div class="col-auto">
-                                <strong>195,000d</strong>
+                                <strong class="totalinvoice"></strong>
                             </div>
                         </div>
                         <div class="row o-fee-item">
@@ -244,7 +216,7 @@
                                 Ship fee: 
                             </div>
                             <div class="col-auto">
-                                195,000d
+                                0 đ
                             </div>
                         </div>
                         <div class="row o-fee-item">
@@ -258,11 +230,11 @@
                         </div>
                         <div class="row o-fee-item o-fee-total">
                             <div class="col ">Total :</div>
-                            <div class="col-auto"><strong>262,150đ</strong></div>
+                            <div class="col-auto"><strong class="totalinvoice"></strong></div>
                         </div>
-                        <div class="row o-fee-item o-fee-note">
+                        <div  class="row o-fee-item o-fee-note">
                             <div class="col ">
-                                <textarea name="note" class="form-control" cols="30" rows="1" placeholder="Note"></textarea>
+                                <span id="noteCart" class="item-note">Note...</span>
                             </div>
                         </div>
                     </div>
@@ -317,6 +289,7 @@
         
         <script type="text/javascript" src="js/cart.js"></script>
         <script type="text/javascript" src="js/product.js"></script>
+        <script type="text/javascript" src="js/checkout.js"></script>
         <script th:inline="javascript">
         //$('#categories').css('display','none');  //wait load content  
         window.fbAsyncInit = function() {
@@ -358,7 +331,7 @@
                                     $('#login').css('display','none');
                                     document.getElementById("hi").innerHTML=`wellcome,`+data.name;
                                     $('#hi').css('display','block');
-                                    document.getElementById("slCart").innerHTML =data.count;
+                                    $('.slcart').text(res.count);
                                     sessionStorage.setItem('user', "true");
                                     
                                 }
@@ -405,7 +378,7 @@
                                 $('#login').css('display','none');
                                 document.getElementById("hi").innerHTML=`wellcome,`+res.name;
                                 $('#hi').css('display','block');
-                                document.getElementById("slCart").innerHTML =res.count;
+                                $('.slcart').text(res.count);
                     }
                 });
             }

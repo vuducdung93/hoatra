@@ -36,6 +36,7 @@ public class userDAO {
     public CartInfo checkContain(User user){
         Session session = this.sessionFactory.openSession();
         try {
+            System.out.println(user.getName());
             session.getTransaction().begin();
             User u= session.get(User.class, user.getUserId());
             if(u==null){
@@ -43,7 +44,7 @@ public class userDAO {
                 session.flush();
             }
 
-            String sql="select new "+CartInfo.class.getName()+"(c.id,c.notes,c.user.name,(select sum(quantity) from c.cartItems)) from "+Cart.class.getName()+" c where c.user.UserId='"+user.getUserId()+"'";
+            String sql="select new "+CartInfo.class.getName()+"(c.id,c.notes,c.user.name,(select COALESCE (sum(quantity),0) from c.cartItems)) from "+Cart.class.getName()+" c where c.user.UserId='"+user.getUserId()+"'";
             List<CartInfo> carts=session.createQuery(sql,CartInfo.class).getResultList();
             if(carts.size()==0){
                 Cart cart=new Cart();
@@ -57,7 +58,9 @@ public class userDAO {
                 return carts.get(0);
             }        
         } catch (Exception ex) {
+            ex.printStackTrace();
             session.getTransaction().rollback();
+            System.out.println(ex);
         } finally {
             session.close();
         }

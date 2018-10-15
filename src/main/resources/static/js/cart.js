@@ -12,7 +12,7 @@ $('#cart').click(function(){
         document.getElementById('cartDetail').style.left = '0';$('body').css('overflow','hidden');
         $.ajax({
             type: 'GET',
-            url: '/checkout',
+            url: '/viewcart',
             dataType: 'json',
             success: function(data){
             var userinfo=   `<img class="img-circle" src="`+user.picture+`"/>
@@ -20,7 +20,7 @@ $('#cart').click(function(){
                                     &nbsp; &nbsp; `+user.name+`
                                 </div>
                                 <div class="moneyright">
-                                    <strong class="slcart"></strong> items- <strong class="totalinvoice"></strong> &nbsp;
+                                    <strong id="cartsl" class="slcart"></strong> items- <strong class="totalinvoice"></strong> &nbsp;
                             </div>`;
             document.getElementById("userInfo").innerHTML=userinfo;
                 var html="";
@@ -138,12 +138,12 @@ $('#cart').click(function(){
                         removeItem(this);
                         ajaxRemoveItem(this);
                     }
-                    $('.slcart').text(Number($('.slcart').text())-1);
+                    $('.slcart').text(Number($('#cartsl').text())-1);
                 });
                 $('.menu-item-add').click(function(){
                     var valinput=$(this).siblings('.val-input');
                     $(valinput).text(Number($(valinput).text())+1);
-                    $('.slcart').text(Number($('.slcart').text())+1);
+                    $('.slcart').text(Number($('#cartsl').text())+1);
                     updateQuantity(this,$(valinput).text());
                     recalculateCart();
                     ajaxUpdateItem(this,valinput);

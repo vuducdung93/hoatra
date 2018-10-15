@@ -11,6 +11,7 @@ and open the template in the editor.
 
 body{
     font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif !important;
+    line-height: normal;
 }
 h1,h2,h3,h4,h5,h6{
     
@@ -751,15 +752,15 @@ nav>.active>a{
     color: #212529;
 }
 .o-fee-code {
-    display: inline-block;
+    display: inline-block !important;
     width: 120px;
     padding: 2px 5px;
     text-align: center;
-    background: #e9ecef;
+    background: #e9ecef !important;
     margin-left: 5px;
     white-space: nowrap;
     vertical-align: -10%;
-    color: #fe0000;
+    color: #fe0000 !important;
     font-weight: 700;
     height: auto;
 }

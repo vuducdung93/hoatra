@@ -36,7 +36,7 @@ public class addtocart {
     private SessionFactory sessionFactory;
     public addtocart(){}
     
-    public void add(String idProduct,String idcart,String quantity,String size,String topping,String mucduong){
+    public boolean add(String idProduct,String idcart,String quantity,String size,String topping,String mucduong){
         Session session = this.sessionFactory.openSession();
         try {
             session.getTransaction().begin();
@@ -56,12 +56,14 @@ public class addtocart {
             session.save(i);
             session.flush();
             session.getTransaction().commit();
-            
+            return true;
         } catch (Exception ex) {
+            System.out.println(ex);
             session.getTransaction().rollback();
         } finally {
             session.close();
         }
+        return false;
     }
     
     public List<cartItemInfo> getListcartitem(String id){
