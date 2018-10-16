@@ -194,7 +194,7 @@ $('.d-menu-grid').click(function(){
                 document.getElementById("overlay").innerHTML = html;
                 $('.navbar-left').click(function(){
                     $('#overlay').css('height','0');
-                    $('body').css('overflow','visible');
+                    $('#warpper').css('position','relative');
                 });
                 $('#overlay .menu-item-add').click( function () {
                     var i= Number($("#quantity").text())+1;
@@ -214,6 +214,7 @@ $('.d-menu-grid').click(function(){
     });
     document.getElementById("overlay").style.height = "100%";
     $('body').css('overflow','hidden');
+    
     
 });
 function tinhtien(price){
